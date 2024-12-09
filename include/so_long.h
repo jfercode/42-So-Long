@@ -43,9 +43,11 @@ void	*ft_calloc(size_t nmemb, size_t size);
 
 size_t	ft_strlen(const char *s);
 
-char	*ft_strdup(const char *s);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(char *s1, char *s2);
+int	map_checker(char *map_file_name);
+
 char	*get_next_line(int fd);
+char	*ft_strdup(const char *s);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strchr(const char *s, int c);
 
 #endif /*SO_LONG_H*/
