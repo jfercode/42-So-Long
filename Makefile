@@ -12,17 +12,19 @@ OBJ_DIR = build/obj
 # Source files
 SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-FT_PRINTF_DIR = source/ft_printf
+LIBFT_DIR = source/ft_libft
 LIBMLX_DIR = source/mlx_linux
+FT_PRINTF_DIR = source/ft_printf
 
 # # Sub-sources
-FT_PRINTF_LIB = $(FT_PRINTF_DIR)/build/ft_printf.a
+LIBFT_LIB = $(LIBFT_DIR)/build/libft.a
 MLX_LINUX_LIB = $(LIBMLX_DIR)/libmlx_Linux.a
+FT_PRINTF_LIB = $(FT_PRINTF_DIR)/build/ft_printf.a
 
 # Default rule
 all: $(NAME)
 
-$(NAME): $(FT_PRINTF_LIB) $(MLX_LINUX_LIB) $(OBJS)
+$(NAME): $(FT_PRINTF_LIB) $(LIBFT_LIB) $(MLX_LINUX_LIB) $(OBJS)
 	@mkdir -p $(OBJ_DIR)
 	@echo "\033[1;32mCREATING STATIC LIBRARY $@\033[0m"
 	ar rcs $@ $^
@@ -38,6 +40,11 @@ $(FT_PRINTF_LIB):
 	@echo "\033[1;35mCOMPILING FT_PRINTF LIBRARY...\033[0m"
 	$(MAKE) -C $(FT_PRINTF_DIR)
 
+# Rule to compile the ft_printf library
+$(LIBFT_LIB):
+	@echo "\033[1;35mCOMPILING LIBFT LIBRARY...\033[0m"
+	$(MAKE) -C $(LIBFT_DIR)
+
 # Rule to compile the mlx library
 $(MLX_LINUX_LIB): 
 	@echo "\033[1;34mCOMPILING MINI LIBX...\033[0m"
@@ -49,6 +56,7 @@ clean:
 	rm -rf $(OBJ_DIR)
 	rm -rf ./so_long
 	$(MAKE) -C $(FT_PRINTF_DIR) clean
+	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(LIBMLX_DIR) clean
 	@echo "\033[1;32mCLEANING DONE.\033[0m"
 
@@ -57,6 +65,7 @@ fclean: clean
 	@echo "\033[1;31mDELETING FILES $(NAME)...\033[0m"
 	rm -f $(NAME)
 	$(MAKE) -C $(FT_PRINTF_DIR) fclean
+	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(LIBMLX_DIR) fclean
 	@echo "\033[1;32mALL CLEANED UP.\033[0m"
 
@@ -67,7 +76,7 @@ re: fclean all
 # Rule to run tests
 test:
 	@echo "\033[1;36mCOMPILING AND RUNNING TESTS...\033[0m"
-	$(CC) $(CFLAGS) -o so_long $(OBJ_DIR)/so_long.o $(NAME) $(FT_PRINTF_LIB) $(MLX_LINUX_LIB) -lX11 -lXext
+	$(CC) $(CFLAGS) -o so_long $(OBJ_DIR)/so_long.o $(NAME) $(FT_PRINTF_LIB) $(LIBFT_LIB) $(MLX_LINUX_LIB) -lX11 -lXext
 	@./so_long
 
 .PHONY: all clean fclean re test

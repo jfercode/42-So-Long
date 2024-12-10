@@ -30,7 +30,7 @@ int	handle_input(int keysym, mlx_data *mlx_core)
 int	main(int argc, char **argv)
 {
 	// mlx_data	mlx_core;
-
+	
 	if (argc == 2)
 	{
 		map_checker(argv[1]);
