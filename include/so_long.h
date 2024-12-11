@@ -22,6 +22,7 @@
 # include <X11/keysym.h>
 # include "../source/mlx_linux/mlx.h"
 # include "../source/ft_printf/include/ft_printf.h"
+# include "../source/ft_libft/include/libft.h"
 
 typedef struct mlx_data
 {
@@ -38,16 +39,18 @@ typedef struct s_data
 	int		endian;
 }				t_data;
 
+void	print_map(char **map, int *dimensions);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	*ft_calloc(size_t nmemb, size_t size);
-
-size_t	ft_strlen(const char *s);
+void	fill(char **map, int *dimensions, int *curr, char to_fill);
 
 int	map_checker(char *map_file_name);
+int	count_char(char **map, int *dimensions, int *curr, char to_fill);
+int	check_for_prop(char *map_file_name, int *dimensions, char prop_char);
+
+int	*find_start_point(char **map, int *dimensions, int *curr);
 
 char	*get_next_line(int fd);
-char	*ft_strdup(const char *s);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strchr(const char *s, int c);
+
+char **map_loader(char *map_file_name, int dimesions_y);
 
 #endif /*SO_LONG_H*/
