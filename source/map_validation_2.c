@@ -33,9 +33,9 @@ static void	fill(char **map, int *dimensions, int *curr, char to_fill)
 /* Functions that count the n of char in a map */
 static int	count_char(char **map, int *dimensions, char to_count)
 {
-    int i;
-    int j;
-	int count;
+	int	i;
+	int	j;
+	int	count;
 
 	count = 0;
 	i = 0;
@@ -46,7 +46,7 @@ static int	count_char(char **map, int *dimensions, char to_count)
 			count++;
 		if (j < dimensions[1] - 1)
 			j++;
-		else 
+		else
 		{
 			j = 0;
 			i++;
@@ -55,28 +55,50 @@ static int	count_char(char **map, int *dimensions, char to_count)
 	return (count);
 }
 
+/* Duplicates the map */
+char	**dup_map(char **map)
+{
+	int		i;
+	int		*y;
+	char	**dup_map;
+
+	i = 0;
+	y = check_map_dimensions(map);
+	dup_map = malloc(sizeof(char *) * (y[0] + 1));
+	while (i < y[0])
+	{
+		dup_map[i] = ft_strdup(map[i]);
+		if (!dup_map[i])
+			return (free_map(dup_map), NULL);
+		i++;
+	}
+	return(dup_map);
+}
+
 /* Check for an available and unic exit in the map */
-int	check_for_prop(char *map_file_name, int *dimensions, char prop_char)
+int	check_for_prop(char **map, int *dimensions, char prop_char)
 {
 	int		num_props;
 	int		num_find_props;
 	int		*start_pos;
 	char	**temp_map;
-	
-	temp_map = map_loader(map_file_name, dimensions[1]);
-	start_pos = find_start_point(temp_map, dimensions, (int[]){0, 0});
+
+	temp_map = dup_map(map);
+	start_pos = find_start_point(temp_map, dimensions, (int []){0, 0});
 	if (!start_pos)
-		return (perror("Error: Initial pos not founded\n"), 0);
+		return (perror("Error: Initial pos not founded\n"),
+			free_map(temp_map), 0);
 	num_props = count_char(temp_map, dimensions, prop_char);
 	if (!num_props)
-		return (ft_printf(2, "Error: No %c prop founded\n", prop_char), 0);
-	start_pos = find_start_point(temp_map, dimensions, (int[]){0, 0});
+		return (ft_printf(2, "Error: No %c prop founded\n", prop_char),
+			free_map(temp_map), 0);
+	start_pos = find_start_point(temp_map, dimensions, (int []){0, 0});
 	fill(temp_map, dimensions, start_pos, prop_char);
-	start_pos = find_start_point(temp_map, dimensions, (int[]){0, 0});
+	start_pos = find_start_point(temp_map, dimensions, (int []){0, 0});
 	num_find_props = count_char(temp_map, dimensions, 'X');
 	if (num_props != num_find_props)
 		return (ft_printf(2, "Error: Player can't reach the prop %c\n",
-				prop_char), 0);
+				prop_char), free_map(temp_map), 0);
 	free_map(temp_map);
 	return (1);
 }

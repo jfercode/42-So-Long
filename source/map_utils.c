@@ -12,27 +12,6 @@
 
 #include "../include/so_long.h"
 
-/* Print the map */
-void	print_map(char **map, int *dimensions)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < dimensions[0])
-	{
-		j = 0;
-		while (j < dimensions[1])
-		{
-			ft_putchar(1, map[i][j]);
-			j++;
-		}
-		ft_putchar(1, map[i][j]);
-		i++;
-	}
-	ft_putchar(1, '\n');
-}
-
 /* Find the start point in a map */
 int	*find_start_point(char **map, int *dimensions, int *curr)
 {
@@ -46,12 +25,12 @@ int	*find_start_point(char **map, int *dimensions, int *curr)
 		return (find_start_point(map, dimensions, curr));
 	}
 	curr[0]++;
-    curr[1] = 0;
+	curr[1] = 0;
 	return (find_start_point(map, dimensions, curr));
 }
 
 /* Free the memory of a map */
-void free_map(char **map)
+void	free_map(char **map)
 {
 	size_t	i;
 
@@ -64,25 +43,78 @@ void free_map(char **map)
 	free(map);
 }
 
-/*	Load the map */
-char **map_loader(char *map_file_name, int dimesions_y)
+/*	Check the dimensions and returns it	*/
+int	*check_map_dimensions(char **map)
 {
 	int		i;
+	size_t	len;
+	int		*dimensions;
+
+	dimensions = malloc (sizeof(int) * 2);
+	if (!dimensions)
+		return (NULL);
+	i = 0;
+	dimensions[0] = 0;
+	dimensions[1] = 0;
+	while (map[i] != NULL)
+	{
+		len = ft_strlen(map[i]) - 1;
+		if (dimensions[1] != 0 && (dimensions[1] != (int)len))
+			return (free(dimensions), NULL);
+		if (dimensions[1] == 0)
+			dimensions[1] = (int)len;
+		dimensions[0]++;
+		i++;
+	}
+	if (!dimensions[0])
+		return (free(dimensions), NULL);
+	return (dimensions);
+}
+/*	Obtain the lines of the map */
+int	obtain_map_lines(char *map_file_name)
+{
+	int		map_fd;
+	int		line_count;
+	char	*line;
+
+	map_fd = open(map_file_name, O_RDONLY);
+	if (map_fd == -1)
+		return (perror("Error: Failed to open the map"), 0);
+	line_count = 0;
+	while ((line = get_next_line(map_fd)) != NULL)
+	{
+		free(line);
+		line_count++;
+	}
+	close(map_fd);
+	return(line_count);
+}
+
+/*	Load the map */
+char **map_loader(char *map_file_name)
+{
 	int		map_fd;
 	char	*line;
 	char	**map;
+	int		i;
+	int		line_count;
 
 	i = 0;
 	map_fd = open(map_file_name, O_RDONLY);
 	if (map_fd == -1)
-		return(perror("Error: Failed to open the map"), NULL);
-	map = malloc (sizeof(char *) * (dimesions_y + 1));
-	while ((line = get_next_line(map_fd)) != NULL)
+		return (perror("Error: Failed to open the map"), NULL);
+	line_count = obtain_map_lines(map_file_name);
+	map = malloc(sizeof(char *) * (line_count + 1));
+	if (!map)
+		return(perror("Error: Memory alloc falied\n"), close(map_fd), NULL);
+	line = get_next_line(map_fd);
+	while (line != NULL)
 	{
 		map[i] = ft_strdup(line);
 		free(line);
 		i++;
 	}
 	map[i] = NULL;
+	close (map_fd);
 	return (map);
 }

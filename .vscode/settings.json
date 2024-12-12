@@ -4,6 +4,8 @@
 		"keysym.h": "c",
 		"fcntl.h": "c",
 		"libft.h": "c",
-		"string.h": "c"
+		"string.h": "c",
+		"numbers": "c",
+		"mlx42.h": "c"
 	}
 }
