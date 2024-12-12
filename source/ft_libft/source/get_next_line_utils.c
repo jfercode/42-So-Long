@@ -10,82 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/libft.h"
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-		i++;
-	return (i);
-}
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	size_t			s;
-	void			*ptr;
-	size_t			i;
-	unsigned char	*p;
-
-	s = nmemb * size;
-	ptr = malloc(s);
-	if (!ptr)
-		return (NULL);
-	p = (unsigned char *) ptr;
-	i = 0;
-	while (i < s)
-	{
-		p[i] = '\0';
-		i++;
-	}
-	return (ptr);
-}
-
-char	*ft_strdup(const char *s)
-{
-	size_t	sl;
-	char	*ns;
-	int		i;
-
-	sl = ft_strlen(s);
-	ns = (char *)malloc((sl + 1) * sizeof(char));
-	if (!ns)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		ns[i] = s[i];
-		i++;
-	}
-	ns[i] = '\0';
-	return (ns);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	char	*p;
-	int		i;
-
-	p = (char *)s;
-	i = 0;
-	if (!s)
-		return (NULL);
-	while (p[i])
-	{
-		if (p[i] == (char)c)
-			return ((char *)&p[i]);
-		i++;
-	}
-	if (p[i] == (char)c)
-		return ((char *)&p[i]);
-	return (NULL);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
+char	*gnl_ft_strjoin(char *s1, char *s2)
 {
 	size_t	l;
 	char	*ns;

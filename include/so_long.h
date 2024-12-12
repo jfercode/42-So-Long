@@ -13,9 +13,6 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
 
 # include <fcntl.h>
 # include <math.h>
@@ -39,17 +36,17 @@ typedef struct s_data
 	int		endian;
 }				t_data;
 
+void free_map(char **map);
 void	print_map(char **map, int *dimensions);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	fill(char **map, int *dimensions, int *curr, char to_fill);
 
 int	map_checker(char *map_file_name);
-int	count_char(char **map, int *dimensions, int *curr, char to_fill);
 int	check_for_prop(char *map_file_name, int *dimensions, char prop_char);
 
 int	*find_start_point(char **map, int *dimensions, int *curr);
 
 char	*get_next_line(int fd);
+char	*gnl_ft_strjoin(char *s1, char *s2);
 
 char **map_loader(char *map_file_name, int dimesions_y);
 
