@@ -13,14 +13,6 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# ifndef WIDTH
-#	define WIDTH 2615
-# endif
-
-# ifndef HEIGHT
-#	define HEIGHT 1471
-# endif
-
 # include <fcntl.h>
 # include <math.h>
 # include <X11/keysym.h>
@@ -30,9 +22,9 @@
 
 void	free_map(char **map);
 void	print_map(char **map);
+void	loop_hook_handler(void *param);
 
 int	map_checker(char **map);
-int	key_handler(int keycode, mlx_t  *mlx);
 int	obtain_map_lines(char *map_file_name);
 int	check_for_prop(char **map, int *dimensions, char prop_char);
 
