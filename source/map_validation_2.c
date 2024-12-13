@@ -66,7 +66,7 @@ char	**dup_map(char **map)
 	y = check_map_dimensions(map);
 	dup_map = malloc(sizeof(char *) * (y[0] + 1));
 	if (!dup_map)
-		return(free(y), NULL);
+		return (free(y), NULL);
 	while (i < y[0])
 	{
 		dup_map[i] = ft_strdup(map[i]);

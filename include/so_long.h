@@ -13,6 +13,13 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# ifndef WIDTH
+#	define WIDTH 2615
+# endif
+
+# ifndef HEIGHT
+#	define HEIGHT 1471
+# endif
 
 # include <fcntl.h>
 # include <math.h>
@@ -21,11 +28,11 @@
 # include "../source/ft_printf/include/ft_printf.h"
 # include "../source/codam_mlx_42/include/MLX42/MLX42.h"
 
-
 void	free_map(char **map);
 void	print_map(char **map);
 
 int	map_checker(char **map);
+int	key_handler(int keycode, mlx_t  *mlx);
 int	obtain_map_lines(char *map_file_name);
 int	check_for_prop(char **map, int *dimensions, char prop_char);
 
