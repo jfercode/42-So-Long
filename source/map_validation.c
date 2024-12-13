@@ -81,7 +81,7 @@ int	map_checker(char **map)
 			free(dimensions), free_map(map), 0);
 	if (!check_for_prop(map, dimensions, 'E')
 		|| !check_for_prop(map, dimensions, 'C'))
-		return (free_map(map), free(dimensions), 0);
+		return (free(dimensions), free_map(map), 0);
 	free(dimensions);
 	return (1);
 }
@@ -106,4 +106,5 @@ void	print_map(char **map)
 		ft_putchar(1, map[i][j]);
 		i++;
 	}
+	free(dimensions);
 }

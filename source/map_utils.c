@@ -32,7 +32,7 @@ int	*find_start_point(char **map, int *dimensions, int *curr)
 /* Free the memory of a map */
 void	free_map(char **map)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (map[i])
@@ -47,10 +47,10 @@ void	free_map(char **map)
 int	*check_map_dimensions(char **map)
 {
 	int		i;
-	size_t	len;
+	int		len;
 	int		*dimensions;
 
-	dimensions = malloc (sizeof(int) * 2);
+	dimensions = malloc(sizeof(int) * 2);
 	if (!dimensions)
 		return (NULL);
 	i = 0;
@@ -59,10 +59,10 @@ int	*check_map_dimensions(char **map)
 	while (map[i] != NULL)
 	{
 		len = ft_strlen(map[i]) - 1;
-		if (dimensions[1] != 0 && (dimensions[1] != (int)len))
+		if (dimensions[1] != 0 && (dimensions[1] != len))
 			return (free(dimensions), NULL);
 		if (dimensions[1] == 0)
-			dimensions[1] = (int)len;
+			dimensions[1] = len;
 		dimensions[0]++;
 		i++;
 	}
@@ -70,6 +70,7 @@ int	*check_map_dimensions(char **map)
 		return (free(dimensions), NULL);
 	return (dimensions);
 }
+
 /*	Obtain the lines of the map */
 int	obtain_map_lines(char *map_file_name)
 {
@@ -80,18 +81,20 @@ int	obtain_map_lines(char *map_file_name)
 	map_fd = open(map_file_name, O_RDONLY);
 	if (map_fd == -1)
 		return (perror("Error: Failed to open the map"), 0);
-	line_count = 0;
-	while ((line = get_next_line(map_fd)) != NULL)
+	line = get_next_line(map_fd);
+	line_count = 1;
+	while (line != NULL)
 	{
-		free(line);
 		line_count++;
+		free(line);
+		line = get_next_line(map_fd);
 	}
 	close(map_fd);
-	return(line_count);
+	return (line_count);
 }
 
 /*	Load the map */
-char **map_loader(char *map_file_name)
+char	**map_loader(char *map_file_name)
 {
 	int		map_fd;
 	char	*line;
@@ -106,13 +109,14 @@ char **map_loader(char *map_file_name)
 	line_count = obtain_map_lines(map_file_name);
 	map = malloc(sizeof(char *) * (line_count + 1));
 	if (!map)
-		return(perror("Error: Memory alloc falied\n"), close(map_fd), NULL);
+		return (perror("Error: Memory alloc falied\n"), close(map_fd), NULL);
 	line = get_next_line(map_fd);
 	while (line != NULL)
 	{
 		map[i] = ft_strdup(line);
-		free(line);
 		i++;
+		free(line);
+		line = get_next_line(map_fd);
 	}
 	map[i] = NULL;
 	close (map_fd);
