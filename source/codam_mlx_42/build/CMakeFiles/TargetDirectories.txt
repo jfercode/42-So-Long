@@ -1,0 +1,7 @@
+/home/jaferna2/Desktop/My-Repos/42-So-Long/source/codam_mlx_42/build/CMakeFiles/mlx42.dir
+/home/jaferna2/Desktop/My-Repos/42-So-Long/source/codam_mlx_42/build/CMakeFiles/edit_cache.dir
+/home/jaferna2/Desktop/My-Repos/42-So-Long/source/codam_mlx_42/build/CMakeFiles/rebuild_cache.dir
+/home/jaferna2/Desktop/My-Repos/42-So-Long/source/codam_mlx_42/build/CMakeFiles/list_install_components.dir
+/home/jaferna2/Desktop/My-Repos/42-So-Long/source/codam_mlx_42/build/CMakeFiles/install.dir
+/home/jaferna2/Desktop/My-Repos/42-So-Long/source/codam_mlx_42/build/CMakeFiles/install/local.dir
+/home/jaferna2/Desktop/My-Repos/42-So-Long/source/codam_mlx_42/build/CMakeFiles/install/strip.dir
