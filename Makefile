@@ -13,8 +13,8 @@ OBJ_DIR = build/obj
 # Source files
 SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+LIBMLX_DIR = MLX42/build
 LIBFT_DIR = source/ft_libft
-LIBMLX_DIR = source/codam_mlx_42/build
 FT_PRINTF_DIR = source/ft_printf
 
 # # Sub-sources
