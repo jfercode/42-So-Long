@@ -34,7 +34,7 @@ void	free_map(char **map);
 void	print_map(char **map);
 void	loop_hook_handler(game_manager_t *game_manager);
 void	free_game_manager(game_manager_t *game_manager);
-void	key_handler(int keycode, game_manager_t * game_manager);
+void	key_handler(struct mlx_key_data keydata, void *param);
 
 int		map_checker(char **map);
 int		obtain_map_lines(char *map_file_name);

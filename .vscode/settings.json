@@ -7,7 +7,8 @@
 	"string.h": "c",
 	"numbers": "c",
 	"mlx42.h": "c",
-	"ft_printf.h": "c"
+	"ft_printf.h": "c",
+	"random": "c"
 },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
