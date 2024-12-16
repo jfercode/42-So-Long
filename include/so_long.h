@@ -20,21 +20,33 @@
 # include "../source/ft_printf/include/ft_printf.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 
+typedef struct game_manager
+{
+	void	*game_windows;
+	int		*resolution;
+	char	**map;
+	mlx_t	*mlx;
+
+}game_manager_t;
+
 
 void	free_map(char **map);
 void	print_map(char **map);
-void	loop_hook_handler(void *param);
+void	loop_hook_handler(game_manager_t *game_manager);
+void	free_game_manager(game_manager_t *game_manager);
+void	key_handler(int keycode, game_manager_t * game_manager);
 
-int	map_checker(char **map);
-int	obtain_map_lines(char *map_file_name);
-int	check_for_prop(char **map, int *dimensions, char prop_char);
+int		map_checker(char **map);
+int		obtain_map_lines(char *map_file_name);
+int		check_for_prop(char **map, int *dimensions, char prop_char);
 
-int* check_map_dimensions(char **map);
-int	*find_start_point(char **map, int *dimensions, int *curr);
+int 	*check_map_dimensions(char **map);
+int		*find_start_point(char **map, int *dimensions, int *curr);
 
 char	*get_next_line(int fd);
 char	*gnl_ft_strjoin(char *s1, char *s2);
 
-char **map_loader(char *map_file_name);
+char 	**map_loader(char *map_file_name);
+char	**dup_map(char **map);
 
 #endif /*SO_LONG_H*/

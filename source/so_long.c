@@ -12,28 +12,35 @@
 
 #include "../include/so_long.h"
 
+static int init_game(char *map_file_name, game_manager_t *game_manager)
+{
+	game_manager = malloc(sizeof(game_manager_t));
+	game_manager->map = map_loader(map_file_name);
+	if (!game_manager->map)
+		return(-1);
+	if (!map_checker(game_manager->map))
+		return (-1);
+	game_manager->resolution = check_map_dimensions(game_manager->map);
+	game_manager->mlx = mlx_init(game_manager->resolution[1] * 64,
+		game_manager->resolution[0] * 64, "so_long", 1);
+	if (!game_manager->mlx)
+		return (perror("Error: Fails to init mlx\n"), -1);	
+	return(1);
+}
+
 int	main(int argc, char **argv)
 {
-	char		**map;
-	int			*resolution;
-	mlx_t		*mlx;
-	// mlx_image_t	*textures; TO DO : Implementar texturas
+	game_manager_t	*game_manager;
 
-	if (argc == 2)
+	game_manager = NULL;
+	if (argc != 2) 
+		return (ft_printf(2, "Usage: %s <map_file>\n", argv[0]), -1);
+	else if (argc == 2)
 	{
-		map = map_loader(argv[1]);
-		if (!map)
-			return(-1);
-		if (!map_checker(map))
-			return (-1);
-		resolution = check_map_dimensions(map);
-		mlx = mlx_init(resolution[1] * 64,resolution[0] * 64, "so_long", 1);
-		if (!mlx)
-			return (perror("Error: Fails to init mlx\n"), -1);
-		loop_hook_handler(mlx);
-		mlx_loop(mlx);
-		mlx_terminate(mlx);
-		free_map(map);
+		init_game(argv[1], game_manager);
+		mlx_key_hook(game_manager->mlx, key_handler, game_manager);
+		mlx_loop(game_manager->mlx);
+		free_game_manager(game_manager);
 	}
 	return (0);
 }
