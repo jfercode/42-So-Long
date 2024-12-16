@@ -23,20 +23,20 @@ static int	is_map_enclosed_by_walls(char **map, int *dimensions)
 	while (y < dimensions[1])
 	{
 		if (map[0][y] != '1')
-			return(perror("Error: Map is not enclosed by walls\n"), 0);
+			return (perror("Error: Map is not enclosed by walls\n"), 0);
 		if (map[dimensions[0 - 1]][y] != '1')
-			return(perror("Error: Map is not enclosed by walls\n"), 0);
+			return (perror("Error: Map is not enclosed by walls\n"), 0);
 		y++;
 	}
 	while (x < dimensions[0])
 	{
 		if (map[x][0] != '1')
-			return(perror("Error: Map is not enclosed by walls\n"), 0);
+			return (perror("Error: Map is not enclosed by walls\n"), 0);
 		if (map[x][dimensions[1] - 1] != '1')
-			return(perror("Error: Map is not enclosed by walls\n"), 0);
+			return (perror("Error: Map is not enclosed by walls\n"), 0);
 		x++;
 	}
-	return(1);
+	return (1);
 }
 
 /*	Check that the maps has the minimal props to play */

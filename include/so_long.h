@@ -22,9 +22,10 @@
 
 typedef struct game_manager
 {
-	void	*game_windows;
-	int		*resolution;
 	char	**map;
+	void	*game_windows;
+	int		*player_pos;
+	int		*resolution;
 	mlx_t	*mlx;
 
 }game_manager_t;
