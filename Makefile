@@ -44,6 +44,7 @@ $(FT_PRINTF_LIB):
 # Rule to compile the ft_printf library
 $(LIBFT_LIB):
 	@echo "\033[1;35mCOMPILING LIBFT LIBRARY...\033[0m"
+	@cd MLX42 && cmake -B build
 	$(MAKE) -C $(LIBFT_DIR)
 
 # Rule to compile the mlx library
