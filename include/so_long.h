@@ -20,6 +20,7 @@
 # include "../source/ft_printf/include/ft_printf.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 
+
 void	free_map(char **map);
 void	print_map(char **map);
 void	loop_hook_handler(void *param);

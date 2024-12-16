@@ -22,6 +22,8 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		map = map_loader(argv[1]);
+		if (!map)
+			return(-1);
 		if (!map_checker(map))
 			return (-1);
 		resolution = check_map_dimensions(map);

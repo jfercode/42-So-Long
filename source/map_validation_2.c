@@ -12,25 +12,22 @@
 
 #include "../include/so_long.h"
 
-/* Flood fill algorithm  */
+/*	Flood fill algorithm	*/
 static void	fill(char **map, int *dimensions, int *curr, char to_fill)
 {
 	if ((curr[0] < 0 || curr[0] >= dimensions[0])
 		|| (curr[1] < 0 || curr[1] >= dimensions[1]))
 		return ;
-	else if (map[curr[0]][curr[1]] == '1' || map[curr[0]][curr[1]] == '2')
+	else if (map[curr[0]][curr[1]] == '1' || map[curr[0]][curr[1]] == 'X')
 		return ;
-	if (map[curr[0]][curr[1]] == to_fill)
-		map[curr[0]][curr[1]] = 'X';
-	else if (map[curr[0]][curr[1]] == '0')
-		map[curr[0]][curr[1]] = '2';
+	map[curr[0]][curr[1]] = 'X';
 	fill(map, dimensions, (int []){curr[0] - 1, curr[1]}, to_fill);
 	fill(map, dimensions, (int []){curr[0] + 1, curr[1]}, to_fill);
 	fill(map, dimensions, (int []){curr[0], curr[1] - 1}, to_fill);
 	fill(map, dimensions, (int []){curr[0], curr[1] + 1}, to_fill);
 }
 
-/* Functions that count the n of char in a map */
+/*	Functions that count the n of char in a map	*/
 static int	count_char(char **map, int *dimensions, char to_count)
 {
 	int	i;
@@ -55,7 +52,7 @@ static int	count_char(char **map, int *dimensions, char to_count)
 	return (count);
 }
 
-/* Duplicates the map */
+/*	Duplicates the map	*/
 char	**dup_map(char **map)
 {
 	int		i;
@@ -79,7 +76,7 @@ char	**dup_map(char **map)
 	return (dup_map);
 }
 
-/* Check for an available and unic exit in the map */
+/*	Check for an available and unic exit in the map	*/
 int	check_for_prop(char **map, int *dimensions, char prop_char)
 {
 	int		num_props;
@@ -98,11 +95,8 @@ int	check_for_prop(char **map, int *dimensions, char prop_char)
 		return (ft_printf(2, "Error: No %c prop founded\n", prop_char),
 			free_map(temp_map), 0);
 	fill(temp_map, dimensions, start_pos, prop_char);
-	start_pos = find_start_point(temp_map, dimensions, (int []){0, 0});
-	if (!start_pos)
-		return (perror("Error: P not founded\n"), free_map(temp_map), 0);
-	num_find_props = count_char(temp_map, dimensions, 'X');
-	if (num_props != num_find_props)
+	num_find_props = count_char(temp_map, dimensions, prop_char);
+	if (num_find_props)
 		return (ft_printf(2, "Error: Player can't reach the prop %c\n",
 				prop_char), free_map(temp_map), 0);
 	free_map(temp_map);

@@ -58,7 +58,9 @@ int	*check_map_dimensions(char **map)
 	dimensions[1] = 0;
 	while (map[i] != NULL)
 	{
-		len = ft_strlen(map[i]) - 1;
+		len = 0;
+		while (map[i][len] && map[i][len] != '\n')
+			len++;
 		if (dimensions[1] != 0 && (dimensions[1] != len))
 			return (free(dimensions), NULL);
 		if (dimensions[1] == 0)

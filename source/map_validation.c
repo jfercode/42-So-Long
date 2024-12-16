@@ -13,26 +13,30 @@
 #include "../include/so_long.h"
 
 /* Check that the map is enclosed by walls */
-static int	is_map_enclosed_by_walls(char **map, int *dimensions, int x, int y)
+static int	is_map_enclosed_by_walls(char **map, int *dimensions)
 {
-	if (map[x] == NULL)
-		return (1);
-	if (!(map[x][y] == '1' || map[x][y] == '0' || map[x][y] == 'E'
-		|| map[x][y] == 'P' || map[x][y] == 'C'))
-		return (perror("Error: Invalid characters in map\n"), 0);
-	if (y == 0 || y == dimensions[1] - 1)
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (y < dimensions[1])
 	{
-		if (map[x][y] != '1')
-			return (perror("Error: Map is not enclosed by walls\n"), 0);
+		if (map[0][y] != '1')
+			return(perror("Error: Map is not enclosed by walls\n"), 0);
+		if (map[dimensions[0 - 1]][y] != '1')
+			return(perror("Error: Map is not enclosed by walls\n"), 0);
+		y++;
 	}
-	else if (x == 0 || x == dimensions[0] - 1)
+	while (x < dimensions[0])
 	{
-		if (map[x][y] != '1')
-			return (perror("Error: Map is not enclosed by walls\n"), 0);
+		if (map[x][0] != '1')
+			return(perror("Error: Map is not enclosed by walls\n"), 0);
+		if (map[x][dimensions[1] - 1] != '1')
+			return(perror("Error: Map is not enclosed by walls\n"), 0);
+		x++;
 	}
-	if (y < dimensions[1] - 1)
-		return (is_map_enclosed_by_walls(map, dimensions, x, y + 1));
-	return (is_map_enclosed_by_walls(map, dimensions, x + 1, 0));
+	return(1);
 }
 
 /*	Check that the maps has the minimal props to play */
@@ -74,7 +78,7 @@ int	map_checker(char **map)
 	if (!dimensions)
 		return (free(dimensions),
 			perror("Error: Map is not rectangular or is empty\n"), 0);
-	if (!is_map_enclosed_by_walls(map, dimensions, 0, 0))
+	if (!is_map_enclosed_by_walls(map, dimensions))
 		return (free_map(map), free(dimensions), 0);
 	if (!check_map_props(map, dimensions, 0, 0))
 		return (perror("Error: Map is impossible to play with it\n"),
