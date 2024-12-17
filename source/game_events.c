@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/so_long.h"
+#include "../include/so_long.h"
 
 /*	Simple function to end the game	*/
 int	ft_exit_game(game_manager_t *game_manager)
