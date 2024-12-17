@@ -15,7 +15,7 @@
 /* Find the start point in a map */
 int	*find_start_point(char **map, int *dimensions, int *curr)
 {
-	if (map[curr[0]][curr[1]] == 'P')
+	if (map[curr[0]][curr[1]] == PLAYER)
 		return (curr);
 	else if (curr[0] >= dimensions[0])
 		return (NULL);

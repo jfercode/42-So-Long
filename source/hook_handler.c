@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
+/*	Simple function to end the game	*/
 int	ft_exit_program(game_manager_t *game_manager)
 {
 	free_game_manager(game_manager);
@@ -19,6 +19,8 @@ int	ft_exit_program(game_manager_t *game_manager)
 	return (0);
 }
 
+/*	Simple key handler to review what key is pressed 
+	- TO DO: Implement player movement here			*/
 void	key_handler(struct mlx_key_data keydata, void *param)
 {
 	game_manager_t	*game_manager;

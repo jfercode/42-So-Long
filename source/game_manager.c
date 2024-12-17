@@ -15,22 +15,20 @@
 /*	Init data before stat game	*/
 int init_game(char *map_file_name, game_manager_t **game_manager)
 {
-    *game_manager = malloc(sizeof(game_manager_t));
-    if (!(*game_manager))
-        return (perror("Error: Failed to allocate memory for game_manager\n"), -1);
-    (*game_manager)->map = map_loader(map_file_name);
-    if (!(*game_manager)->map)
-        return(-1);
-    if (!map_checker((*game_manager)->map))
-        return (-1);
-    (*game_manager)->resolution = check_map_dimensions((*game_manager)->map);
-    (*game_manager)->mlx = mlx_init((*game_manager)->resolution[1] * 64,
-        (*game_manager)->resolution[0] * 64, "so_long", 1);
-	(*game_manager)->player_pos = find_start_point((*game_manager)->map, 
-		(*game_manager)->resolution, (int []){0, 0});
-    if (!(*game_manager)->mlx)
-        return (perror("Error: Fails to init mlx\n"), -1);    
-    return(1);
+	*game_manager = malloc(sizeof(game_manager_t));
+	if (!(*game_manager))
+		return (perror("Error: Failed to allocate memory for game_manager\n"), -1);
+	(*game_manager)->map = map_loader(map_file_name);
+	if (!(*game_manager)->map)
+	return(-1);
+	if (!map_checker((*game_manager)->map))
+		return (-1);
+	(*game_manager)->resolution = check_map_dimensions((*game_manager)->map);
+	(*game_manager)->mlx = mlx_init((*game_manager)->resolution[1] * 64,
+		(*game_manager)->resolution[0] * 64, "so_long", 1);
+	if (!(*game_manager)->mlx)
+		return (perror("Error: Fails to init mlx\n"), -1);    
+	return(1);
 }
 
 /* Init the all the loops to start playing	*/
@@ -48,4 +46,19 @@ void	free_game_manager(game_manager_t *game_manager)
 		free_map(game_manager->map);
 	mlx_close_window(game_manager->mlx);
 	mlx_terminate(game_manager->mlx);
+}
+
+/* Load the different game images from image files	*/
+void ft_img_init(game_manager_t *game_manager)
+{
+
+}
+
+/* Checks that the given img exist or not	*/
+void	ft_check_img(game_manager_t *game_manager, void **img, char *path)
+{
+	int	width;
+	int	height;
+
+	// TO DO: Obtener la imagen aqui 
 }

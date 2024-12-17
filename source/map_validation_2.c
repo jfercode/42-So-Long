@@ -18,7 +18,7 @@ static void	fill(char **map, int *dimensions, int *curr, char to_fill)
 	if ((curr[0] < 0 || curr[0] >= dimensions[0])
 		|| (curr[1] < 0 || curr[1] >= dimensions[1]))
 		return ;
-	else if (map[curr[0]][curr[1]] == '1' || map[curr[0]][curr[1]] == 'X')
+	else if (map[curr[0]][curr[1]] == WALL || map[curr[0]][curr[1]] == 'X')
 		return ;
 	map[curr[0]][curr[1]] = 'X';
 	fill(map, dimensions, (int []){curr[0] - 1, curr[1]}, to_fill);

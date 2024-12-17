@@ -22,17 +22,17 @@ static int	is_map_enclosed_by_walls(char **map, int *dimensions)
 	y = 0;
 	while (y < dimensions[1])
 	{
-		if (map[0][y] != '1')
+		if (map[0][y] != WALL)
 			return (perror("Error: Map is not enclosed by walls\n"), 0);
-		if (map[dimensions[0 - 1]][y] != '1')
+		if (map[dimensions[0 - 1]][y] != WALL)
 			return (perror("Error: Map is not enclosed by walls\n"), 0);
 		y++;
 	}
 	while (x < dimensions[0])
 	{
-		if (map[x][0] != '1')
+		if (map[x][0] != WALL)
 			return (perror("Error: Map is not enclosed by walls\n"), 0);
-		if (map[x][dimensions[1] - 1] != '1')
+		if (map[x][dimensions[1] - 1] != WALL)
 			return (perror("Error: Map is not enclosed by walls\n"), 0);
 		x++;
 	}
@@ -53,11 +53,11 @@ static int	check_map_props(char **map, int *dimensions, int x, int y)
 	{
 		while (y < dimensions[1])
 		{
-			if (map[x][y] == 'E')
+			if (map[x][y] == EXIT)
 				e++;
-			else if (map[x][y] == 'C')
+			else if (map[x][y] == COLLECTIBLE)
 				c++;
-			else if (map[x][y] == 'P')
+			else if (map[x][y] == PLAYER)
 				p++;
 			y++;
 		}
@@ -83,8 +83,8 @@ int	map_checker(char **map)
 	if (!check_map_props(map, dimensions, 0, 0))
 		return (perror("Error: Map is impossible to play with it\n"),
 			free(dimensions), free_map(map), 0);
-	if (!check_for_prop(map, dimensions, 'E')
-		|| !check_for_prop(map, dimensions, 'C'))
+	if (!check_for_prop(map, dimensions, EXIT)
+		|| !check_for_prop(map, dimensions, COLLECTIBLE))
 		return (free(dimensions), free_map(map), 0);
 	free(dimensions);
 	return (1);
