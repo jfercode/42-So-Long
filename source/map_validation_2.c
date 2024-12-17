@@ -28,7 +28,7 @@ static void	fill(char **map, int *dimensions, int *curr, char to_fill)
 }
 
 /*	Functions that count the n of char in a map	*/
-static int	count_char(char **map, int *dimensions, char to_count)
+int	count_char(char **map, int *dimensions, char to_count)
 {
 	int	i;
 	int	j;
