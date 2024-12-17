@@ -12,7 +12,7 @@
 
 #include "../include/libft.h"
 
-char	*gnl_ft_strjoin(char *s1, char *s2)
+char	*ft_gnl_ft_strjoin(char *s1, char *s2)
 {
 	size_t	l;
 	char	*ns;

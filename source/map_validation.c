@@ -70,35 +70,35 @@ static int	check_map_props(char **map, int *dimensions, int x, int y)
 }
 
 /*	Map checker */
-int	map_checker(char **map)
+int	ft_map_checker(char **map)
 {
 	int		*dimensions;
 
-	dimensions = check_map_dimensions(map);
+	dimensions = ft_check_map_dimensions(map);
 	if (!dimensions)
 		return (free(dimensions),
 			perror("Error: Map is not rectangular or is empty\n"), 0);
 	if (!is_map_enclosed_by_walls(map, dimensions))
-		return (free_map(map), free(dimensions), 0);
+		return (ft_free_map(map), free(dimensions), 0);
 	if (!check_map_props(map, dimensions, 0, 0))
 		return (perror("Error: Map is impossible to play with it\n"),
-			free(dimensions), free_map(map), 0);
-	if (!check_for_prop(map, dimensions, EXIT)
-		|| !check_for_prop(map, dimensions, COLLECTIBLE))
-		return (free(dimensions), free_map(map), 0);
+			free(dimensions), ft_free_map(map), 0);
+	if (!ft_check_for_prop(map, dimensions, EXIT)
+		|| !ft_check_for_prop(map, dimensions, COLLECTIBLE))
+		return (free(dimensions), ft_free_map(map), 0);
 	free(dimensions);
 	return (1);
 }
 
 /* Print the map */
-void	print_map(char **map)
+void	ft_print_map(char **map)
 {
 	int	i;
 	int	j;
 	int	*dimensions;
 
 	i = 0;
-	dimensions = check_map_dimensions(map);
+	dimensions = ft_check_map_dimensions(map);
 	while (i < dimensions[0])
 	{
 		j = 0;

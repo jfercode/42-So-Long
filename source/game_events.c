@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   game_events.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaferna2 <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 10:22:48 by jaferna2          #+#    #+#             */
-/*   Updated: 2024/12/09 10:45:46 by jaferna2         ###   ########.fr       */
+/*   Created: 2024/12/17 12:41:26 by jaferna2          #+#    #+#             */
+/*   Updated: 2024/12/17 12:41:27 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+# include "../include/so_long.h"
 
-int	main(int argc, char **argv)
+/*	Simple function to end the game	*/
+int	ft_exit_game(game_manager_t *game_manager)
 {
-	game_manager_t	*game_manager;
-
-	game_manager = NULL;
-	if (argc != 2) 
-		return (ft_printf(2, "Usage: %s <map_file>\n", argv[0]), -1);
-	else if (argc == 2)
-	{
-		if (ft_init_game(argv[1], &game_manager) == -1)
-            return (-1);
-		ft_start_game(game_manager);
-	}
+	ft_free_game_manager(game_manager);
+	exit (0);
 	return (0);
 }

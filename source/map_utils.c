@@ -13,7 +13,7 @@
 #include "../include/so_long.h"
 
 /* Find the start point in a map */
-int	*find_start_point(char **map, int *dimensions, int *curr)
+int	*ft_find_start_point(char **map, int *dimensions, int *curr)
 {
 	if (map[curr[0]][curr[1]] == PLAYER)
 		return (curr);
@@ -22,15 +22,15 @@ int	*find_start_point(char **map, int *dimensions, int *curr)
 	if (curr[1] < dimensions[1] -1)
 	{
 		curr[1]++;
-		return (find_start_point(map, dimensions, curr));
+		return (ft_find_start_point(map, dimensions, curr));
 	}
 	curr[0]++;
 	curr[1] = 0;
-	return (find_start_point(map, dimensions, curr));
+	return (ft_find_start_point(map, dimensions, curr));
 }
 
 /* Free the memory of a map */
-void	free_map(char **map)
+void	ft_free_map(char **map)
 {
 	int	i;
 
@@ -44,7 +44,7 @@ void	free_map(char **map)
 }
 
 /*	Check the dimensions and returns it	*/
-int	*check_map_dimensions(char **map)
+int	*ft_check_map_dimensions(char **map)
 {
 	int		i;
 	int		len;
@@ -74,7 +74,7 @@ int	*check_map_dimensions(char **map)
 }
 
 /*	Obtain the lines of the map */
-int	obtain_map_lines(char *map_file_name)
+int	ft_obtain_map_lines(char *map_file_name)
 {
 	int		map_fd;
 	int		line_count;
@@ -83,20 +83,20 @@ int	obtain_map_lines(char *map_file_name)
 	map_fd = open(map_file_name, O_RDONLY);
 	if (map_fd == -1)
 		return (perror("Error: Failed to open the map"), 0);
-	line = get_next_line(map_fd);
+	line = ft_get_next_line(map_fd);
 	line_count = 1;
 	while (line != NULL)
 	{
 		line_count++;
 		free(line);
-		line = get_next_line(map_fd);
+		line = ft_get_next_line(map_fd);
 	}
 	close(map_fd);
 	return (line_count);
 }
 
 /*	Load the map */
-char	**map_loader(char *map_file_name)
+char	**ft_map_loader(char *map_file_name)
 {
 	int		map_fd;
 	char	*line;
@@ -108,17 +108,17 @@ char	**map_loader(char *map_file_name)
 	map_fd = open(map_file_name, O_RDONLY);
 	if (map_fd == -1)
 		return (perror("Error: Failed to open the map"), NULL);
-	line_count = obtain_map_lines(map_file_name);
+	line_count = ft_obtain_map_lines(map_file_name);
 	map = malloc(sizeof(char *) * (line_count + 1));
 	if (!map)
 		return (perror("Error: Memory alloc falied\n"), close(map_fd), NULL);
-	line = get_next_line(map_fd);
+	line = ft_get_next_line(map_fd);
 	while (line != NULL)
 	{
 		map[i] = ft_strdup(line);
 		i++;
 		free(line);
-		line = get_next_line(map_fd);
+		line = ft_get_next_line(map_fd);
 	}
 	map[i] = NULL;
 	close (map_fd);

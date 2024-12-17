@@ -27,7 +27,7 @@ static char	*obtain_rest_with_nl(int fd, char *rest)
 		if (b_readed == -1)
 			return (free(buffer), free(rest), NULL);
 		buffer[b_readed] = '\0';
-		rest = gnl_ft_strjoin(rest, buffer);
+		rest = ft_gnl_ft_strjoin(rest, buffer);
 		if (!rest)
 			return (free(buffer), NULL);
 	}
@@ -87,7 +87,7 @@ static char	*update_rest(char *rest)
 	return (new_rest);
 }
 
-char	*get_next_line(int fd)
+char	*ft_get_next_line(int fd)
 {
 	char		*line_readed;
 	static char	*rest[1024];

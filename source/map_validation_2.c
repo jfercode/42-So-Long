@@ -53,14 +53,14 @@ static int	count_char(char **map, int *dimensions, char to_count)
 }
 
 /*	Duplicates the map	*/
-char	**dup_map(char **map)
+char	**ft_dup_map(char **map)
 {
 	int		i;
 	int		*y;
 	char	**dup_map;
 
 	i = 0;
-	y = check_map_dimensions(map);
+	y = ft_check_map_dimensions(map);
 	dup_map = malloc(sizeof(char *) * (y[0] + 1));
 	if (!dup_map)
 		return (free(y), NULL);
@@ -68,7 +68,7 @@ char	**dup_map(char **map)
 	{
 		dup_map[i] = ft_strdup(map[i]);
 		if (!dup_map[i])
-			return (free_map(dup_map), free(y), NULL);
+			return (ft_free_map(dup_map), free(y), NULL);
 		i++;
 	}
 	dup_map[i] = NULL;
@@ -77,28 +77,28 @@ char	**dup_map(char **map)
 }
 
 /*	Check for an available and unic exit in the map	*/
-int	check_for_prop(char **map, int *dimensions, char prop_char)
+int	ft_check_for_prop(char **map, int *dimensions, char prop_char)
 {
 	int		num_props;
 	int		num_find_props;
 	int		*start_pos;
 	char	**temp_map;
 
-	temp_map = dup_map(map);
+	temp_map = ft_dup_map(map);
 	if (!temp_map)
 		return (ft_printf(2, "Cannot check for prop %d\n", prop_char), 0);
-	start_pos = find_start_point(temp_map, dimensions, (int []){0, 0});
+	start_pos = ft_find_start_point(temp_map, dimensions, (int []){0, 0});
 	if (!start_pos)
-		return (perror("Error: P not founded\n"), free_map(temp_map), 0);
+		return (perror("Error: P not founded\n"), ft_free_map(temp_map), 0);
 	num_props = count_char(temp_map, dimensions, prop_char);
 	if (!num_props)
 		return (ft_printf(2, "Error: No %c prop founded\n", prop_char),
-			free_map(temp_map), 0);
+			ft_free_map(temp_map), 0);
 	fill(temp_map, dimensions, start_pos, prop_char);
 	num_find_props = count_char(temp_map, dimensions, prop_char);
 	if (num_find_props)
 		return (ft_printf(2, "Error: Player can't reach the prop %c\n",
-				prop_char), free_map(temp_map), 0);
-	free_map(temp_map);
+				prop_char), ft_free_map(temp_map), 0);
+	ft_free_map(temp_map);
 	return (1);
 }

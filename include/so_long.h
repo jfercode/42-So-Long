@@ -30,27 +30,28 @@
 
 typedef struct player
 {
-	void	*player_U;
-	void	*player_D;
-	void	*player_R;
-	void	*player_L;
+	mlx_image_t *current_state;
+	mlx_image_t	*player_U;
+	mlx_image_t	*player_D;
+	mlx_image_t	*player_R;
+	mlx_image_t	*player_L;
 
-	int		*player_pos;
+	int			*player_pos;
 
 }player_t;
 
 typedef struct game_objs
 {
-	player_t	*player;
+	player_t		*player;
 
-	void		*collectable;
-	void		*exit_open;
-	void		*exit_close;
-	void		*wall;
-	void		*floor;
+	mlx_image_t		*collectable;
+	mlx_image_t		*exit_open;
+	mlx_image_t		*exit_close;
+	mlx_image_t		*wall;
+	mlx_image_t		*floor;
 
-	int			img_width;
-	int			img_height;
+	int				img_width;
+	int				img_height;
 
 }game_objs_t;
 
@@ -71,25 +72,28 @@ typedef struct game_manager
 }game_manager_t;
 
 
-void	free_map(char **map);
-void	print_map(char **map);
-void	start_game(game_manager_t *game_manager);
-void	loop_hook_handler(game_manager_t *game_manager);
-void	free_game_manager(game_manager_t *game_manager);
-void	key_handler(struct mlx_key_data keydata, void *param);
+void	ft_free_map(char **map);
+void	ft_print_map(char **map);
+int		ft_exit_game(game_manager_t *game_manager);
+void	 ft_img_init(game_manager_t *game_manager);
+void	ft_start_game(game_manager_t *game_manager);
+void	ft_loop_hook_handler(game_manager_t *game_manager);
+void	ft_free_game_manager(game_manager_t *game_manager);
+void	ft_key_handler(struct mlx_key_data keydata, void *param);
+void	ft_check_img(game_manager_t *game_manager, mlx_image_t **img, char *path);
 
-int		map_checker(char **map);
-int		obtain_map_lines(char *map_file_name);
-int 	init_game(char *map_file_name, game_manager_t **game_manager);
-int		check_for_prop(char **map, int *dimensions, char prop_char);
+int		ft_map_checker(char **map);
+int		ft_obtain_map_lines(char *map_file_name);
+int 	ft_init_game(char *map_file_name, game_manager_t **game_manager);
+int		ft_check_for_prop(char **map, int *dimensions, char prop_char);
 
-int 	*check_map_dimensions(char **map);
-int		*find_start_point(char **map, int *dimensions, int *curr);
+int 	*ft_check_map_dimensions(char **map);
+int		*ft_find_start_point(char **map, int *dimensions, int *curr);
 
-char	*get_next_line(int fd);
-char	*gnl_ft_strjoin(char *s1, char *s2);
+char	*ft_get_next_line(int fd);
+char	*ft_gnl_ft_strjoin(char *s1, char *s2);
 
-char 	**map_loader(char *map_file_name);
-char	**dup_map(char **map);
+char 	**ft_map_loader(char *map_file_name);
+char	**ft_dup_map(char **map);
 
 #endif /*SO_LONG_H*/

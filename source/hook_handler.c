@@ -11,17 +11,10 @@
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-/*	Simple function to end the game	*/
-int	ft_exit_program(game_manager_t *game_manager)
-{
-	free_game_manager(game_manager);
-	exit (0);
-	return (0);
-}
 
 /*	Simple key handler to review what key is pressed 
 	- TO DO: Implement player movement here			*/
-void	key_handler(struct mlx_key_data keydata, void *param)
+void	ft_key_handler(struct mlx_key_data keydata, void *param)
 {
 	game_manager_t	*game_manager;
 
@@ -32,7 +25,7 @@ void	key_handler(struct mlx_key_data keydata, void *param)
 		return ;
 	}
 	if (keydata.key == MLX_KEY_ESCAPE)
-		ft_exit_program(game_manager);
+		ft_exit_game(game_manager);
 	else if (keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_W)
 		ft_printf(1, "UP\n");
 	else if (keydata.key == MLX_KEY_DOWN || keydata.key == MLX_KEY_S)
