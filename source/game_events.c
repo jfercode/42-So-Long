@@ -21,8 +21,6 @@ void	ft_start_game(game_manager_t *game_manager)
 	game_manager->game_objs->player->player_pos 
 		= ft_find_start_point(game_manager->map, game_manager->resolution,
 		(int []) {0, 0});
-	ft_print_map(game_manager->map);
-	// ft_printf(1, "Player pos: %d.%d\n", game_manager->player->player_pos[0], game_manager->player->player_pos[1]);
 	mlx_key_hook(game_manager->mlx, ft_key_handler, game_manager);
 	mlx_loop(game_manager->mlx);
 }

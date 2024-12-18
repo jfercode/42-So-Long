@@ -33,6 +33,25 @@ static void	ft_check_img(game_manager_t *game_manager,
 	mlx_delete_texture(texture);
 }
 
+static	void ft_set_background(game_manager_t *game_manager, 
+						mlx_image_t *img)
+{
+	int32_t	mon_width;
+	int32_t	mon_height;
+	int32_t	img_width;
+	int32_t	img_height;
+	int32_t	*pos;
+
+	pos = malloc(2);
+	mlx_get_monitor_size(0, &mon_width, &mon_height);
+    mlx_resize_image(img, mon_width, mon_height);
+	img_width = img->width;
+	img_height = img->height;
+	pos[0] = (mon_width - img_width) / 2;
+	pos[1] = (mon_height - img_height) / 2;
+	mlx_image_to_window(game_manager->mlx, img, pos[0], pos[1]);
+}
+
 /* Load the different game images from image files	*/
 void	ft_img_init(game_manager_t *game_manager)
 {
@@ -54,4 +73,7 @@ void	ft_img_init(game_manager_t *game_manager)
 		"./assets/sprites/exit_close.png");
 	ft_check_img(game_manager, &game_manager->game_objs->wall,
 		"./assets/sprites/wall.png");
+	ft_check_img(game_manager, &game_manager->game_objs->background,
+		"./assets/sprites/background.png");
+	ft_set_background(game_manager, game_manager->game_objs->background);
 }

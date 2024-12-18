@@ -37,7 +37,7 @@ typedef struct player
 	mlx_image_t	*player_L;
 
 	int			*player_pos;
-}player_t;
+}					player_t;
 
 typedef struct game_objs
 {
@@ -48,10 +48,11 @@ typedef struct game_objs
 	mlx_image_t		*exit_close;
 	mlx_image_t		*wall;
 	mlx_image_t		*floor;
+	mlx_image_t		*background;
 
 	int				coll_count;
 	int				exit_state;
-}game_objs_t;
+}					game_objs_t;
 
 typedef struct game_manager
 {
@@ -66,7 +67,7 @@ typedef struct game_manager
 	mlx_t		*mlx;
 	player_t	*player;
 	game_objs_t	*game_objs;
-}game_manager_t;
+}					game_manager_t;
 
 
 void	ft_free_map(char **map);
@@ -75,6 +76,7 @@ void	 ft_img_init(game_manager_t *game_manager);
 void	ft_start_game(game_manager_t *game_manager);
 void	ft_loop_hook_handler(game_manager_t *game_manager);
 void	ft_free_game_manager(game_manager_t *game_manager);
+void	ft_init_mlx(game_manager_t *game_manager);
 void	ft_key_handler(struct mlx_key_data keydata, void *param);
 
 int		ft_map_checker(char **map);
@@ -84,6 +86,7 @@ int		count_char(char **map, int *dimensions, char to_count);
 int		ft_check_for_prop(char **map, int *dimensions, char prop_char);
 int 	ft_init_game(char *map_file_name, game_manager_t **game_manager);
 
+int		*ft_obtain_monitor_resolution();
 int 	*ft_check_map_dimensions(char **map);
 int		*ft_find_start_point(char **map, int *dimensions, int *curr);
 
