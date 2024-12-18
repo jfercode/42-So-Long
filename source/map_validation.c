@@ -73,7 +73,7 @@ static int	check_map_props(char **map, int *dimensions, int x, int y)
 int	ft_map_checker(char **map)
 {
 	int		*dimensions;
-
+	
 	dimensions = ft_check_map_dimensions(map);
 	if (!dimensions)
 		return (free(dimensions),

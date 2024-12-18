@@ -16,12 +16,14 @@
 void	ft_start_game(game_manager_t *game_manager)
 {
 	game_manager->game_objs->coll_count = count_char(game_manager->map,
-			game_manager->resolution, COLLECTIBLE);
+			game_manager->map_dimensions, COLLECTIBLE);
 	game_manager->game_objs->exit_state = 0;
-	game_manager->game_objs->player->player_pos 
-		= ft_find_start_point(game_manager->map, game_manager->resolution,
-		(int []) {0, 0});
+	game_manager->game_objs->player->player_pos
+		= ft_find_start_point(game_manager->map, game_manager->map_dimensions,
+			(int []){0, 0});
+	ft_render_game(game_manager->width, game_manager->height, game_manager);
 	mlx_key_hook(game_manager->mlx, ft_key_handler, game_manager);
+	mlx_resize_hook(game_manager->mlx, ft_render_game, game_manager);
 	mlx_loop(game_manager->mlx);
 }
 

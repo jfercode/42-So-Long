@@ -19,7 +19,7 @@
 # define WALL '1'
 # define EMPTY '0'
 
-# define CELL_SIZE 32
+# define TILE_SIZE 512
 
 # include <fcntl.h>
 # include <math.h>
@@ -35,7 +35,6 @@ typedef struct player
 	mlx_image_t	*player_D;
 	mlx_image_t	*player_R;
 	mlx_image_t	*player_L;
-
 	int			*player_pos;
 }					player_t;
 
@@ -49,35 +48,34 @@ typedef struct game_objs
 	mlx_image_t		*wall;
 	mlx_image_t		*floor;
 	mlx_image_t		*background;
-
 	int				coll_count;
 	int				exit_state;
 }					game_objs_t;
 
 typedef struct game_manager
 {
-	int			movements_count;
-
-	int			*resolution;
-
-	char		**map;
-
-	void		*game_windows;
-
+	uint32_t	width;
+	uint32_t	height;
 	mlx_t		*mlx;
 	player_t	*player;
 	game_objs_t	*game_objs;
+	int			movements_count;
+	int			*map_dimensions;
+	char		**map;
+	void		*game_windows;
 }					game_manager_t;
 
 
 void	ft_free_map(char **map);
 void	ft_print_map(char **map);
-void	 ft_img_init(game_manager_t *game_manager);
+void	ft_init_mlx(game_manager_t *game_manager);
+void	ft_img_init(game_manager_t *game_manager);
 void	ft_start_game(game_manager_t *game_manager);
+void	ft_render_game(int width, int height, void *param);
 void	ft_loop_hook_handler(game_manager_t *game_manager);
 void	ft_free_game_manager(game_manager_t *game_manager);
-void	ft_init_mlx(game_manager_t *game_manager);
 void	ft_key_handler(struct mlx_key_data keydata, void *param);
+void	ft_draw_image(game_manager_t *game_manager, mlx_image_t *img, int *pos);
 
 int		ft_map_checker(char **map);
 int		ft_obtain_map_lines(char *map_file_name);

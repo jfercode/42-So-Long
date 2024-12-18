@@ -30,8 +30,8 @@ int	ft_init_game(char *map_file_name, game_manager_t **game_manager)
 	if (!ft_map_checker((*game_manager)->map))
 		return (-1);
 	(*game_manager)->movements_count = 0;
-	(*game_manager)->resolution = ft_check_map_dimensions((*game_manager)->map);
-	ft_init_mlx(*game_manager);	
+	(*game_manager)->map_dimensions = ft_check_map_dimensions((*game_manager)->map);
+	ft_init_mlx(*game_manager);
 	ft_img_init(*game_manager);
 	(*game_manager)->game_objs->player->current_state
 		= (*game_manager)->game_objs->player->player_D;
@@ -54,13 +54,15 @@ void	ft_init_mlx(game_manager_t *game_manager)
 	int32_t	mon_width;
 	int32_t	mon_height;
 
-	game_manager->mlx = mlx_init(game_manager->resolution[1],
-		game_manager->resolution[0], "so_long", 1);
+	game_manager->mlx = mlx_init(game_manager->map_dimensions[1],
+			game_manager->map_dimensions[0], "so_long", 1);
 	if (!game_manager->mlx)
 	{
 		perror("Error: Fails to init mlx\n");
 		return ;
 	}
 	mlx_get_monitor_size(0, &mon_width, &mon_height);
+	game_manager->width = mon_width;
+	game_manager->height = mon_height;
 	mlx_set_window_size(game_manager->mlx, mon_width, mon_height);
 }
