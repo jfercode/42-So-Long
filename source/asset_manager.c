@@ -33,7 +33,6 @@ static void	ft_check_img(game_manager_t *game_manager,
 	mlx_delete_texture(texture);
 }
 
-
 /* Load the different game images from image files	*/
 void	ft_img_init(game_manager_t *game_manager)
 {
@@ -59,7 +58,7 @@ void	ft_img_init(game_manager_t *game_manager)
 		"./assets/sprites/floor.png");
 }
 
-void	ft_render_game(int width, int height, void *param)
+void	ft_render_game(void *param)
 {
 	int32_t	pos[2];
 	int		x;
@@ -73,8 +72,8 @@ void	ft_render_game(int width, int height, void *param)
 		y = 0;
 		while (game_manager->map[x][y])
 		{
-			pos[0] = y * (width / game_manager->map_dimensions[1]);
-			pos[1] = x * (height / game_manager->map_dimensions[0]);
+			pos[0] = y * TILE_SIZE;
+			pos[1] = x * TILE_SIZE;
 			if (game_manager->map[x][y] == WALL)
 				ft_draw_image(game_manager, game_manager->game_objs->wall, pos);
 			else if (game_manager->map[x][y] == PLAYER)
@@ -84,7 +83,7 @@ void	ft_render_game(int width, int height, void *param)
 			else if (game_manager->map[x][y] == EXIT)
 				ft_draw_image(game_manager, game_manager->game_objs->exit_close, pos);	
 			else if (game_manager->map[x][y] == EMPTY)
-				ft_draw_image(game_manager, game_manager->game_objs->floor, pos);	
+			 	ft_draw_image(game_manager, game_manager->game_objs->floor, pos);	
 			y++;
 		}
 		x++;

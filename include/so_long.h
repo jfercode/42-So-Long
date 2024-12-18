@@ -19,7 +19,7 @@
 # define WALL '1'
 # define EMPTY '0'
 
-# define TILE_SIZE 512
+# define TILE_SIZE 64
 
 # include <fcntl.h>
 # include <math.h>
@@ -68,10 +68,10 @@ typedef struct game_manager
 
 void	ft_free_map(char **map);
 void	ft_print_map(char **map);
+void	ft_render_game(void *param);
 void	ft_init_mlx(game_manager_t *game_manager);
 void	ft_img_init(game_manager_t *game_manager);
 void	ft_start_game(game_manager_t *game_manager);
-void	ft_render_game(int width, int height, void *param);
 void	ft_loop_hook_handler(game_manager_t *game_manager);
 void	ft_free_game_manager(game_manager_t *game_manager);
 void	ft_key_handler(struct mlx_key_data keydata, void *param);

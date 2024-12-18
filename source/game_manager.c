@@ -54,8 +54,8 @@ void	ft_init_mlx(game_manager_t *game_manager)
 	int32_t	mon_width;
 	int32_t	mon_height;
 
-	game_manager->mlx = mlx_init(game_manager->map_dimensions[1],
-			game_manager->map_dimensions[0], "so_long", 1);
+	game_manager->mlx = mlx_init(game_manager->map_dimensions[1] * TILE_SIZE,
+			game_manager->map_dimensions[0] * TILE_SIZE, "so_long", 1);
 	if (!game_manager->mlx)
 	{
 		perror("Error: Fails to init mlx\n");
@@ -64,5 +64,5 @@ void	ft_init_mlx(game_manager_t *game_manager)
 	mlx_get_monitor_size(0, &mon_width, &mon_height);
 	game_manager->width = mon_width;
 	game_manager->height = mon_height;
-	mlx_set_window_size(game_manager->mlx, mon_width, mon_height);
+	// mlx_set_window_size(game_manager->mlx, mon_width, mon_height);
 }

@@ -21,10 +21,10 @@ void	ft_start_game(game_manager_t *game_manager)
 	game_manager->game_objs->player->player_pos
 		= ft_find_start_point(game_manager->map, game_manager->map_dimensions,
 			(int []){0, 0});
-	ft_render_game(game_manager->width, game_manager->height, game_manager);
 	mlx_key_hook(game_manager->mlx, ft_key_handler, game_manager);
-	mlx_resize_hook(game_manager->mlx, ft_render_game, game_manager);
+	ft_render_game(game_manager);
 	mlx_loop(game_manager->mlx);
+	// mlx_loop_hook() TO DO: Redraw here
 }
 
 /*	Simple function to end the game	*/
