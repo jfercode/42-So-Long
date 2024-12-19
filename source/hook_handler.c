@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:19:39 by jaferna2          #+#    #+#             */
-/*   Updated: 2024/12/19 16:34:51 by jaferna2         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:12:53 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	ft_key_handler(struct mlx_key_data keydata, void *param)
 		ft_exit_game(game_manager);
 	if (keydata.key)
 		ft_player_movement(keydata, game_manager);
-	ft_printf(1, "Key pressed: %d\n", keydata.key);
 	ft_render_game(game_manager);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:41:26 by jaferna2          #+#    #+#             */
-/*   Updated: 2024/12/19 16:21:45 by jaferna2         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:13:05 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_start_game(game_manager_t *game_manager)
 	mlx_close_hook(game_manager->mlx, ft_close_handler, game_manager);
 	ft_render_game(game_manager);
 	mlx_loop(game_manager->mlx);
-
 }
 
 /*	Simple function to end the game	*/

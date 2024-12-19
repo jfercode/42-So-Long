@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:23:06 by jaferna2          #+#    #+#             */
-/*   Updated: 2024/12/19 15:55:24 by jaferna2         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:56:44 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	ft_free_game_manager(game_manager_t *game_manager);
 void	ft_key_handler(struct mlx_key_data keydata, void *param);
 void	ft_player_movement(mlx_key_data_t key, game_manager_t *game_manager);
 void	ft_draw_image(game_manager_t *game_manager, mlx_image_t *img, int *pos);
-void	ft_update_map_with_player_movement(game_manager_t *game_manager, int x, int y);
 
 int		ft_map_checker(char **map);
 int		ft_obtain_map_lines(char *map_file_name);
