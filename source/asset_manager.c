@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asset_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:12:28 by jaferna2          #+#    #+#             */
-/*   Updated: 2024/12/17 15:12:30 by jaferna2         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:32:17 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static void	ft_check_img(game_manager_t *game_manager,
 /* Load the different game images from image files	*/
 void	ft_img_init(game_manager_t *game_manager)
 {
+	if (!game_manager->game_objs)
+		ft_printf(2, "Error: game_objs is NULL\n");
 	ft_check_img(game_manager, &game_manager->game_objs->player->player_U,
 		"./assets/sprites/player_up.png");
 	ft_check_img(game_manager, &game_manager->game_objs->player->player_D,
@@ -60,9 +62,9 @@ void	ft_img_init(game_manager_t *game_manager)
 
 void	ft_render_game(void *param)
 {
-	int32_t	pos[2];
-	int		x;
-	int		y;
+	int32_t			pos[2];
+	int				x;
+	int				y;
 	game_manager_t	*game_manager;
 
 	game_manager = (game_manager_t *)param;
@@ -77,13 +79,13 @@ void	ft_render_game(void *param)
 			if (game_manager->map[x][y] == WALL)
 				ft_draw_image(game_manager, game_manager->game_objs->wall, pos);
 			else if (game_manager->map[x][y] == PLAYER)
-				ft_draw_image(game_manager, game_manager->game_objs->player->player_D, pos);
+				ft_draw_image(game_manager, game_manager->game_objs->player->current_state, pos);
 			else if (game_manager->map[x][y] == COLLECTIBLE)
 				ft_draw_image(game_manager, game_manager->game_objs->collectable, pos);
 			else if (game_manager->map[x][y] == EXIT)
-				ft_draw_image(game_manager, game_manager->game_objs->exit_close, pos);	
+				ft_draw_image(game_manager, game_manager->game_objs->exit_close, pos);
 			else if (game_manager->map[x][y] == EMPTY)
-			 	ft_draw_image(game_manager, game_manager->game_objs->floor, pos);	
+				ft_draw_image(game_manager, game_manager->game_objs->floor, pos);
 			y++;
 		}
 		x++;

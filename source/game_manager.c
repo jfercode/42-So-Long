@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   game_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:44:00 by jaferna2          #+#    #+#             */
-/*   Updated: 2024/12/16 12:44:02 by jaferna2         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:21:07 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-/*	Init data before stat game	*/
+/*	Init data before stat game	TO DO free control here*/
 int	ft_init_game(char *map_file_name, game_manager_t **game_manager)
 {
 	*game_manager = malloc(sizeof(game_manager_t));
@@ -24,13 +24,15 @@ int	ft_init_game(char *map_file_name, game_manager_t **game_manager)
 	(*game_manager)->game_objs->player = malloc(sizeof(player_t));
 	if (!(*game_manager)->game_objs->player)
 		return (perror("Error: Failed to malloc for player\n"), -1);
+	if (!ft_check_map_extensions(map_file_name))
+		return (-1);
 	(*game_manager)->map = ft_map_loader(map_file_name);
 	if (!(*game_manager)->map)
 		return (-1);
 	if (!ft_map_checker((*game_manager)->map))
 		return (-1);
-	(*game_manager)->movements_count = 0;
-	(*game_manager)->map_dimensions = ft_check_map_dimensions((*game_manager)->map);
+	(*game_manager)->map_dimensions
+		= ft_check_map_dimensions((*game_manager)->map);
 	ft_init_mlx(*game_manager);
 	ft_img_init(*game_manager);
 	(*game_manager)->game_objs->player->current_state
@@ -51,18 +53,13 @@ void	ft_free_game_manager(game_manager_t *game_manager)
 // Function to set the windows to the monitor size
 void	ft_init_mlx(game_manager_t *game_manager)
 {
-	int32_t	mon_width;
-	int32_t	mon_height;
-
-	game_manager->mlx = mlx_init(game_manager->map_dimensions[1] * TILE_SIZE,
-			game_manager->map_dimensions[0] * TILE_SIZE, "so_long", 1);
+	game_manager->width = game_manager->map_dimensions[1] * TILE_SIZE;
+	game_manager->height = game_manager->map_dimensions[0] * TILE_SIZE;
+	game_manager->mlx = mlx_init(game_manager->width,
+			game_manager->height, "so_long", 1);
 	if (!game_manager->mlx)
 	{
 		perror("Error: Fails to init mlx\n");
 		return ;
 	}
-	mlx_get_monitor_size(0, &mon_width, &mon_height);
-	game_manager->width = mon_width;
-	game_manager->height = mon_height;
-	// mlx_set_window_size(game_manager->mlx, mon_width, mon_height);
 }

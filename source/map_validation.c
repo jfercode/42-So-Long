@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:25:41 by jaferna2          #+#    #+#             */
-/*   Updated: 2024/12/12 11:25:42 by jaferna2         ###   ########.fr       */
+/*   Updated: 2024/12/19 11:01:38 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,33 @@ static int	check_map_props(char **map, int *dimensions, int x, int y)
 	return (1);
 }
 
+int	ft_check_map_extensions(char *map_file_name)
+{
+	char	*extension;
+	char	*file_extension;
+
+	extension = ".ber";
+	file_extension = ft_strrchr(map_file_name, '.');
+	if (!file_extension)
+		return (perror("Error: Map file has no extension\n"), 0);
+	else if (ft_strncmp(file_extension, extension, 4))
+		return (perror("Error: Map file has wrong extension\n"), 0);
+	return (1);
+}
+
 /*	Map checker */
 int	ft_map_checker(char **map)
 {
 	int		*dimensions;
-	
+
 	dimensions = ft_check_map_dimensions(map);
 	if (!dimensions)
 		return (free(dimensions),
-			perror("Error: Map is not rectangular or is empty\n"), 0);
+			perror("Error: Map is not valid to play with it\n"), 0);
 	if (!is_map_enclosed_by_walls(map, dimensions))
 		return (ft_free_map(map), free(dimensions), 0);
 	if (!check_map_props(map, dimensions, 0, 0))
-		return (perror("Error: Map is impossible to play with it\n"),
+		return (perror("Error: Map is not valid to play with it\n"),
 			free(dimensions), ft_free_map(map), 0);
 	if (!ft_check_for_prop(map, dimensions, EXIT)
 		|| !ft_check_for_prop(map, dimensions, COLLECTIBLE))
@@ -90,25 +104,3 @@ int	ft_map_checker(char **map)
 	return (1);
 }
 
-/* Print the map */
-void	ft_print_map(char **map)
-{
-	int	i;
-	int	j;
-	int	*dimensions;
-
-	i = 0;
-	dimensions = ft_check_map_dimensions(map);
-	while (i < dimensions[0])
-	{
-		j = 0;
-		while (j < dimensions[1])
-		{
-			ft_putchar(1, map[i][j]);
-			j++;
-		}
-		ft_putchar(1, map[i][j]);
-		i++;
-	}
-	free(dimensions);
-}

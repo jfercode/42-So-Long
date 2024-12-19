@@ -3,30 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:03:20 by jaferna2          #+#    #+#             */
-/*   Updated: 2024/12/09 16:03:21 by jaferna2         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:24:19 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
 /* Find the start point in a map */
-int	*ft_find_start_point(char **map, int *dimensions, int *curr)
+int	*ft_locate_player(char **map, int *dimensions)
 {
-	if (map[curr[0]][curr[1]] == PLAYER)
-		return (curr);
-	else if (curr[0] >= dimensions[0])
-		return (NULL);
-	if (curr[1] < dimensions[1] -1)
-	{
-		curr[1]++;
-		return (ft_find_start_point(map, dimensions, curr));
-	}
-	curr[0]++;
+	int	*curr;
+
+	curr = malloc(sizeof(int) * 2);
+	curr[0] = 0;
 	curr[1] = 0;
-	return (ft_find_start_point(map, dimensions, curr));
+	while (curr[0] < dimensions[0])
+	{
+		while (curr[1] < dimensions[1])
+		{
+			if (map[curr[0]][curr[1]] == PLAYER)
+				return (curr);
+			curr[1]++;
+		}
+		curr[0]++;
+		curr[1] = 0;
+	}
+	return (NULL);
 }
 
 /* Free the memory of a map */
@@ -98,11 +103,11 @@ int	ft_obtain_map_lines(char *map_file_name)
 /*	Load the map */
 char	**ft_map_loader(char *map_file_name)
 {
+	int		i;
 	int		map_fd;
+	int		line_count;
 	char	*line;
 	char	**map;
-	int		i;
-	int		line_count;
 
 	i = 0;
 	map_fd = open(map_file_name, O_RDONLY);
@@ -115,8 +120,7 @@ char	**ft_map_loader(char *map_file_name)
 	line = ft_get_next_line(map_fd);
 	while (line != NULL)
 	{
-		map[i] = ft_strdup(line);
-		i++;
+		map[i++] = ft_strdup(line);
 		free(line);
 		line = ft_get_next_line(map_fd);
 	}

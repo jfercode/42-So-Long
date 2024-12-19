@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:23:06 by jaferna2          #+#    #+#             */
-/*   Updated: 2024/12/13 16:38:00 by jaferna2         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:55:24 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define PLAYER 'P'
 # define EXIT 'E'
+# define EXIT_CLOSE '0'
+# define EXIT_OPEN '1'
 # define COLLECTIBLE 'C'
 # define WALL '1'
 # define EMPTY '0'
@@ -57,36 +59,39 @@ typedef struct game_manager
 	uint32_t	width;
 	uint32_t	height;
 	mlx_t		*mlx;
-	player_t	*player;
 	game_objs_t	*game_objs;
 	int			movements_count;
 	int			*map_dimensions;
 	char		**map;
-	void		*game_windows;
 }					game_manager_t;
 
 
 void	ft_free_map(char **map);
 void	ft_print_map(char **map);
 void	ft_render_game(void *param);
+void	ft_close_handler(void *param);
 void	ft_init_mlx(game_manager_t *game_manager);
 void	ft_img_init(game_manager_t *game_manager);
 void	ft_start_game(game_manager_t *game_manager);
 void	ft_loop_hook_handler(game_manager_t *game_manager);
+
 void	ft_free_game_manager(game_manager_t *game_manager);
 void	ft_key_handler(struct mlx_key_data keydata, void *param);
+void	ft_player_movement(mlx_key_data_t key, game_manager_t *game_manager);
 void	ft_draw_image(game_manager_t *game_manager, mlx_image_t *img, int *pos);
+void	ft_update_map_with_player_movement(game_manager_t *game_manager, int x, int y);
 
 int		ft_map_checker(char **map);
 int		ft_obtain_map_lines(char *map_file_name);
 int		ft_exit_game(game_manager_t *game_manager);
+int		ft_check_map_extensions(char *map_file_name);
 int		count_char(char **map, int *dimensions, char to_count);
 int		ft_check_for_prop(char **map, int *dimensions, char prop_char);
 int 	ft_init_game(char *map_file_name, game_manager_t **game_manager);
 
 int		*ft_obtain_monitor_resolution();
 int 	*ft_check_map_dimensions(char **map);
-int		*ft_find_start_point(char **map, int *dimensions, int *curr);
+int		*ft_locate_player(char **map, int *dimensions);
 
 char	*ft_get_next_line(int fd);
 char	*ft_gnl_ft_strjoin(char *s1, char *s2);

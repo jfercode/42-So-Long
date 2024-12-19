@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_events.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:41:26 by jaferna2          #+#    #+#             */
-/*   Updated: 2024/12/17 12:41:27 by jaferna2         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:21:45 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,19 @@ void	ft_start_game(game_manager_t *game_manager)
 {
 	game_manager->game_objs->coll_count = count_char(game_manager->map,
 			game_manager->map_dimensions, COLLECTIBLE);
-	game_manager->game_objs->exit_state = 0;
-	game_manager->game_objs->player->player_pos
-		= ft_find_start_point(game_manager->map, game_manager->map_dimensions,
-			(int []){0, 0});
+	game_manager->game_objs->exit_state = EXIT_CLOSE;
+	game_manager->movements_count = 0;
+	game_manager->game_objs->player->player_pos = 
+			ft_locate_player(game_manager->map, game_manager->map_dimensions);
+	ft_printf(1, "dimensions: %d %d\n", game_manager->map_dimensions[0],
+			game_manager->map_dimensions[1]);
+	ft_printf(1, "player pos: %d %d\n", game_manager->game_objs->player->player_pos[0],
+			game_manager->game_objs->player->player_pos[1]);	
 	mlx_key_hook(game_manager->mlx, ft_key_handler, game_manager);
+	mlx_close_hook(game_manager->mlx, ft_close_handler, game_manager);
 	ft_render_game(game_manager);
 	mlx_loop(game_manager->mlx);
-	// mlx_loop_hook() TO DO: Redraw here
+
 }
 
 /*	Simple function to end the game	*/
