@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# define MOVE UP 
 #include "../include/so_long.h"
 
 static int ft_check_for_valid_movement(game_manager_t *game_manager, int x, int y)
