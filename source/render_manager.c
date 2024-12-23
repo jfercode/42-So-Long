@@ -35,13 +35,23 @@ void	ft_render_static(game_manager_t *game_manager)
 			if (game_manager->map[x][y] == WALL)
 				ft_draw_image(game_manager, game_manager->game_objs->wall, pos);
 			else if (game_manager->map[x][y] == EMPTY)
-				ft_draw_image(game_manager, game_manager->game_objs->floor, pos);
+				ft_draw_image(game_manager,
+					game_manager->game_objs->floor, pos);
 			else if (game_manager->map[x][y] == COLLECTIBLE)
-                ft_draw_image(game_manager, game_manager->game_objs->collectable, pos);
+				ft_draw_image(game_manager,
+					game_manager->game_objs->collectable, pos);
 			y++;
 		}
 		x++;
 	}
+}
+
+static void	ft_render_exit(game_manager_t *game_manager, int *pos)
+{
+	if (game_manager->game_objs->exit_state == EXIT_CLOSE)
+		ft_draw_image(game_manager, game_manager->game_objs->exit_close, pos);
+	else
+		ft_draw_image(game_manager, game_manager->game_objs->exit_open, pos);
 }
 
 void	ft_render_dynamic(game_manager_t *game_manager)
@@ -59,16 +69,12 @@ void	ft_render_dynamic(game_manager_t *game_manager)
 			pos[0] = y * TILE_SIZE;
 			pos[1] = x * TILE_SIZE;
 			if (game_manager->map[x][y] == PLAYER)
-				ft_draw_image(game_manager, game_manager->game_objs->player->current_state, pos);           
+				ft_draw_image(game_manager, PLAYER_STATE, pos);
 			else if (game_manager->map[x][y] == EXIT)
-			{
-				if (game_manager->game_objs->exit_state == EXIT_CLOSE)
-					ft_draw_image(game_manager, game_manager->game_objs->exit_close, pos);
-				else
-					ft_draw_image(game_manager, game_manager->game_objs->exit_open, pos);
-			}
+				ft_render_exit(game_manager, pos);
 			else if (game_manager->map[x][y] == EMPTY)
-				ft_draw_image(game_manager, game_manager->game_objs->floor, pos);
+				ft_draw_image(game_manager,
+					game_manager->game_objs->floor, pos);
 			y++;
 		}
 		x++;

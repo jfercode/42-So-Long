@@ -22,6 +22,8 @@
 # define EMPTY '0'
 
 # define PLAYER_STATE game_manager->game_objs->player->current_state
+# define PLAYER_X game_manager->game_objs->player->player_pos[0]
+# define PLAYER_Y game_manager->game_objs->player->player_pos[1]
 
 # define TILE_SIZE 64
 
