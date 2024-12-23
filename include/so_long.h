@@ -21,6 +21,8 @@
 # define WALL '1'
 # define EMPTY '0'
 
+# define PLAYER_STATE game_manager->game_objs->player->current_state
+
 # define TILE_SIZE 64
 
 # include <fcntl.h>
@@ -68,14 +70,17 @@ typedef struct game_manager
 
 void	ft_free_map(char **map);
 void	ft_print_map(char **map);
-void	ft_render_game(void *param);
 void	ft_close_handler(void *param);
+void	ft_win_game(game_manager_t *game_manager);
 void	ft_init_mlx(game_manager_t *game_manager);
 void	ft_img_init(game_manager_t *game_manager);
 void	ft_start_game(game_manager_t *game_manager);
-void	ft_loop_hook_handler(game_manager_t *game_manager);
-
+void	ft_render_game(game_manager_t *game_manager);
+void	ft_render_static(game_manager_t *game_manager);
+void	ft_render_dynamic(game_manager_t *game_manager);
 void	ft_free_game_manager(game_manager_t *game_manager);
+void	ft_loop_hook_handler(game_manager_t *game_manager);
+void	ft_print_player_moves(game_manager_t *game_manager);
 void	ft_key_handler(struct mlx_key_data keydata, void *param);
 void	ft_player_movement(mlx_key_data_t key, game_manager_t *game_manager);
 void	ft_draw_image(game_manager_t *game_manager, mlx_image_t *img, int *pos);

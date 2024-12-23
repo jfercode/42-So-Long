@@ -69,6 +69,7 @@ static int	check_map_props(char **map, int *dimensions, int x, int y)
 	return (1);
 }
 
+/* Check the map extension */
 int	ft_check_map_extensions(char *map_file_name)
 {
 	char	*extension;
@@ -103,4 +104,3 @@ int	ft_map_checker(char **map)
 	free(dimensions);
 	return (1);
 }
-

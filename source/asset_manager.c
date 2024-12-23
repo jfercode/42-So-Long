@@ -60,38 +60,7 @@ void	ft_img_init(game_manager_t *game_manager)
 		"./assets/sprites/floor.png");
 }
 
-void	ft_render_game(void *param)
-{
-	int32_t			pos[2];
-	int				x;
-	int				y;
-	game_manager_t	*game_manager;
-
-	game_manager = (game_manager_t *)param;
-	x = 0;
-	while (game_manager->map[x])
-	{
-		y = 0;
-		while (game_manager->map[x][y])
-		{
-			pos[0] = y * TILE_SIZE;
-			pos[1] = x * TILE_SIZE;
-			if (game_manager->map[x][y] == WALL)
-				ft_draw_image(game_manager, game_manager->game_objs->wall, pos);
-			else if (game_manager->map[x][y] == PLAYER)
-				ft_draw_image(game_manager, game_manager->game_objs->player->current_state, pos);
-			else if (game_manager->map[x][y] == COLLECTIBLE)
-				ft_draw_image(game_manager, game_manager->game_objs->collectable, pos);
-			else if (game_manager->map[x][y] == EXIT)
-				ft_draw_image(game_manager, game_manager->game_objs->exit_close, pos);
-			else if (game_manager->map[x][y] == EMPTY)
-				ft_draw_image(game_manager, game_manager->game_objs->floor, pos);
-			y++;
-		}
-		x++;
-	}
-}
-
+/* Simple resize and draw image */
 void	ft_draw_image(game_manager_t *game_manager, mlx_image_t *img, int *pos)
 {
 	mlx_resize_image(img, TILE_SIZE, TILE_SIZE);

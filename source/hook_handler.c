@@ -12,8 +12,7 @@
 
 #include "../include/so_long.h"
 
-/*	Simple key handler to review what key is pressed 
-	- TO DO: Implement player movement here			*/
+/*	Simple key handler to review what key is pressed */
 void	ft_key_handler(struct mlx_key_data keydata, void *param)
 {
 	game_manager_t	*game_manager;
@@ -25,12 +24,18 @@ void	ft_key_handler(struct mlx_key_data keydata, void *param)
 		return ;
 	}
 	if (keydata.key == MLX_KEY_ESCAPE)
+	{
+		ft_printf(1, "ESCAPE\n");
 		ft_exit_game(game_manager);
-	if (keydata.key)
+	}
+	if (keydata.key && keydata.action == MLX_PRESS)
+	{
+		ft_print_player_moves(game_manager);
 		ft_player_movement(keydata, game_manager);
-	ft_render_game(game_manager);
+	}
 }
 
+/*	Simple close handler to exit game when needed */
 void	ft_close_handler(void *param)
 {
 	game_manager_t	*game_manager;

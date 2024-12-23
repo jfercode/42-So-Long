@@ -21,7 +21,7 @@ static int ft_check_for_valid_movement(game_manager_t *game_manager, int x, int 
 		if (game_manager->game_objs->exit_state == EXIT_CLOSE)
 			return (0);
 		else 
-			return (1); // TO DO: Add the condition to win the game	here
+			return (ft_win_game(game_manager), 1);
 	}
 	else if (game_manager->map[x][y] == COLLECTIBLE)
 	{
@@ -43,6 +43,7 @@ static void	ft_move_player_to_position(game_manager_t *game_manager, int x, int 
 		game_manager->game_objs->player->player_pos[1] = y;
 		game_manager->map[x][y] = PLAYER;
 		game_manager->movements_count++;
+		ft_render_dynamic(game_manager);
 	}
 }
 
@@ -51,32 +52,26 @@ void	ft_player_movement(struct mlx_key_data keydata,
 {
 	if (keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_W)
 	{
+		PLAYER_STATE = game_manager->game_objs->player->player_U;
 		ft_move_player_to_position(game_manager, game_manager->game_objs->player->player_pos[0] - 1,
 			game_manager->game_objs->player->player_pos[1]);
-		game_manager->game_objs->player->current_state
-			= game_manager->game_objs->player->player_U;
 	}
 	else if (keydata.key == MLX_KEY_DOWN || keydata.key == MLX_KEY_S)
 	{	
+		PLAYER_STATE = game_manager->game_objs->player->player_D;
 		ft_move_player_to_position(game_manager, game_manager->game_objs->player->player_pos[0] + 1,
 			game_manager->game_objs->player->player_pos[1]);
-		game_manager->game_objs->player->current_state
-			= game_manager->game_objs->player->player_D;
 	}
 	else if (keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_A)
 	{	
+		PLAYER_STATE = game_manager->game_objs->player->player_L;
 		ft_move_player_to_position(game_manager, game_manager->game_objs->player->player_pos[0],
 			game_manager->game_objs->player->player_pos[1] - 1);
-		game_manager->game_objs->player->current_state
-				= game_manager->game_objs->player->player_L;
 	}
 	else if (keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_D)
 	{
+		PLAYER_STATE = game_manager->game_objs->player->player_R;
 		ft_move_player_to_position(game_manager, game_manager->game_objs->player->player_pos[0],
 			game_manager->game_objs->player->player_pos[1] + 1);
-		game_manager->game_objs->player->current_state
-			= game_manager->game_objs->player->player_R;
 	}
 }
-
-

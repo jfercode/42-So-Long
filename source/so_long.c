@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	else if (argc == 2)
 	{
 		if (ft_init_game(argv[1], &game_manager) == -1)
-            return (-1);
+            return ((ft_free_game_manager(game_manager)), -1);
 		ft_start_game(game_manager);
 	}
 	return (0);
