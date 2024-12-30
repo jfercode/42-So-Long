@@ -18,6 +18,8 @@ int	*ft_locate_player(char **map, int *dimensions)
 	int	*curr;
 
 	curr = malloc(sizeof(int) * 2);
+	if (!curr)
+		return (NULL);
 	curr[0] = 0;
 	curr[1] = 0;
 	while (curr[0] < dimensions[0])
@@ -31,6 +33,7 @@ int	*ft_locate_player(char **map, int *dimensions)
 		curr[0]++;
 		curr[1] = 0;
 	}
+	free (curr);
 	return (NULL);
 }
 

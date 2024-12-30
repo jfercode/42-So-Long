@@ -24,7 +24,7 @@ static int	is_map_enclosed_by_walls(char **map, int *dimensions)
 	{
 		if (map[0][y] != WALL)
 			return (perror("Error: Map is not enclosed by walls\n"), 0);
-		if (map[dimensions[0 - 1]][y] != WALL)
+		if (map[dimensions[0] - 1][y] != WALL)
 			return (perror("Error: Map is not enclosed by walls\n"), 0);
 		y++;
 	}

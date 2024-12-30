@@ -76,5 +76,6 @@ int	ft_check_for_prop(char **map, int *dimensions, char prop_char)
 		return (ft_printf(2, "Error: Player can't reach the prop %c\n",
 				prop_char), ft_free_map(temp_map), 0);
 	ft_free_map(temp_map);
+	free (start_pos);
 	return (1);
 }

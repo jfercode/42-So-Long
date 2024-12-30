@@ -45,20 +45,25 @@ void	ft_free_game_manager(game_manager_t *game_manager)
 {
 	if (game_manager->map)
 		ft_free_map(game_manager->map);
+	if (game_manager->map_dimensions)
+		free (game_manager->map_dimensions);
 	if (game_manager->game_objs)
 	{
 		if (game_manager->game_objs->player)
 		{
-			free(game_manager->game_objs->player->player_pos);
-			free(game_manager->game_objs->player);
+			if (game_manager->game_objs->player->player_pos)
+				free (game_manager->game_objs->player->player_pos);
+			free (game_manager->game_objs->player);
 		}
+		free (game_manager->game_objs);
 	}
-	free (game_manager->game_objs);
+	// ft_free_asset(game_manager);
 	mlx_close_window(game_manager->mlx);
 	mlx_terminate(game_manager->mlx);
+	free (game_manager);
 }
 
-// Function to set the windows to the monitor size
+//	Function to set the windows to the monitor size
 void	ft_init_mlx(game_manager_t *game_manager)
 {
 	game_manager->width = game_manager->map_dimensions[1] * TILE_SIZE;
