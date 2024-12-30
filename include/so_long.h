@@ -78,7 +78,6 @@ void	ft_win_game(game_manager_t *game_manager);
 void	ft_init_mlx(game_manager_t *game_manager);
 void	ft_img_init(game_manager_t *game_manager);
 void	ft_start_game(game_manager_t *game_manager);
-void	ft_free_asset(game_manager_t *game_manager);
 void	ft_render_game(game_manager_t *game_manager);
 void	ft_render_static(game_manager_t *game_manager);
 void	ft_render_dynamic(game_manager_t *game_manager);
