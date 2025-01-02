@@ -11,7 +11,10 @@ SRC_DIR = source
 OBJ_DIR = build/obj
 
 # Source files
-SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
+SRC_FILES = $(SRC_DIR)/asset_manager.c $(SRC_DIR)/game_events.c $(SRC_DIR)/game_manager.c  \
+			$(SRC_DIR)/hook_handler.c $(SRC_DIR)/map_utils.c $(SRC_DIR)/map_utils_2.c \
+			$(SRC_DIR)/map_validation.c $(SRC_DIR)/map_validation_2.c $(SRC_DIR)/player_movement.c \
+			$(SRC_DIR)/render_manager.c $(SRC_DIR)/so_long.c
 OBJS = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 LIBMLX_DIR = MLX42/build
 LIBFT_DIR = source/ft_libft
@@ -29,6 +32,8 @@ $(NAME): $(FT_PRINTF_LIB) $(LIBFT_LIB) $(LIBMLX_LIB) $(OBJS)
 	@mkdir -p $(OBJ_DIR)
 	@echo "\033[1;32mCREATING STATIC LIBRARY $@\033[0m"
 	ar rcs $@ $^
+	@echo "\033[1;36mCOMPILING AND RUNNING TESTS...\033[0m"
+	$(CC) $(CFLAGS) -o so_long $(OBJ_DIR)/so_long.o $(NAME) $(FT_PRINTF_LIB) $(LIBFT_LIB) $(LIBMLX_LIB) -lX11 -lXext $(LDFLAGS)
 
 # Rule to compile .c files into .o
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
@@ -74,9 +79,4 @@ fclean: clean
 re: fclean all
 	@echo "\033[1;34mPROJECT REBUILD.\033[0m"
 
-# Rule to run tests
-gen_exec:
-	@echo "\033[1;36mCOMPILING AND RUNNING TESTS...\033[0m"
-	$(CC) $(CFLAGS) -o so_long $(OBJ_DIR)/so_long.o $(NAME) $(FT_PRINTF_LIB) $(LIBFT_LIB) $(LIBMLX_LIB) -lX11 -lXext $(LDFLAGS)
-
-.PHONY: all clean fclean re gen_exec
+.PHONY: all clean fclean re sanitize
