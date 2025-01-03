@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:44:00 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/03 12:53:04 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/03 14:32:35 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_init_game(char *map_file_name, game_manager_t **game_manager)
 	ft_init_mlx(*game_manager);
 	ft_img_init(*game_manager);
 	(*game_manager)->game_objs->player->current_state
-		= (*game_manager)->game_objs->player->player_D;
+		= (*game_manager)->game_objs->player->player_D[0];
 	return (1);
 }
 

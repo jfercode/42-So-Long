@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:12:28 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/03 13:16:19 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/03 14:26:55 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,41 @@ static void	ft_check_img(game_manager_t *game_manager,
 	mlx_delete_texture(texture);
 }
 
+// Load the different game imagess from image files for the player
+static void	check_player_sprites(game_manager_t *game_manager)
+{
+	ft_check_img(game_manager, &game_manager->game_objs->player->player_U[0],
+		"./assets/sprites/Player_U_1.png");
+	ft_check_img(game_manager, &game_manager->game_objs->player->player_U[1],
+		"./assets/sprites/Player_U_2.png");
+	ft_check_img(game_manager, &game_manager->game_objs->player->player_U[2],
+		"./assets/sprites/Player_U_3.png");
+	ft_check_img(game_manager, &game_manager->game_objs->player->player_D[0],
+		"./assets/sprites/Player_D_1.png");
+	ft_check_img(game_manager, &game_manager->game_objs->player->player_D[1],
+		"./assets/sprites/Player_D_2.png");
+	ft_check_img(game_manager, &game_manager->game_objs->player->player_D[2],
+		"./assets/sprites/Player_D_3.png");
+	ft_check_img(game_manager, &game_manager->game_objs->player->player_L[0],
+		"./assets/sprites/Player_L_1.png");
+	ft_check_img(game_manager, &game_manager->game_objs->player->player_L[2],
+		"./assets/sprites/Player_L_2.png");
+	ft_check_img(game_manager, &game_manager->game_objs->player->player_L[3],
+		"./assets/sprites/Player_L_3.png");
+	ft_check_img(game_manager, &game_manager->game_objs->player->player_R[0],
+		"./assets/sprites/Player_R_1.png");
+	ft_check_img(game_manager, &game_manager->game_objs->player->player_R[1],
+		"./assets/sprites/Player_R_2.png");
+	ft_check_img(game_manager, &game_manager->game_objs->player->player_R[2],
+		"./assets/sprites/Player_R_3.png");
+}
+
 /* Load the different game images from image files	*/
 void	ft_img_init(game_manager_t *game_manager)
 {
 	if (!game_manager->game_objs)
 		ft_printf(2, "Error: game_objs is NULL\n");
-	ft_check_img(game_manager, &game_manager->game_objs->player->player_U,
-		"./assets/sprites/Player_U_1.png");
-	ft_check_img(game_manager, &game_manager->game_objs->player->player_D,
-		"./assets/sprites/Player_D_1.png");
-	ft_check_img(game_manager, &game_manager->game_objs->player->player_L,
-		"./assets/sprites/Player_L_1.png");
-	ft_check_img(game_manager, &game_manager->game_objs->player->player_R,
-		"./assets/sprites/Player_R_1.png");
+	check_player_sprites(game_manager);
 	ft_check_img(game_manager, &C_SPRITE, "./assets/sprites/collectable.png");
 	ft_check_img(game_manager, &F_SPRITE, "./assets/sprites/floor.png");
 	ft_check_img(game_manager, &EO_SPRITE, "./assets/sprites/exit_open.png");

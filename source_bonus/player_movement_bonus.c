@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:16:32 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/03 11:52:44 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/03 14:41:28 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,22 @@ void	ft_player_movement(struct mlx_key_data keydata,
 {
 	if (keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_W)
 	{
-		PLAYER_STATE = game_manager->game_objs->player->player_U;
+		PLAYER_STATE = game_manager->game_objs->player->player_U[0];
 		ft_move_player_to_position(game_manager, PLAYER_X - 1, PLAYER_Y);
 	}
 	else if (keydata.key == MLX_KEY_DOWN || keydata.key == MLX_KEY_S)
 	{
-		PLAYER_STATE = game_manager->game_objs->player->player_D;
+		PLAYER_STATE = game_manager->game_objs->player->player_D[0];
 		ft_move_player_to_position(game_manager, PLAYER_X + 1, PLAYER_Y);
 	}
 	else if (keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_A)
 	{
-		PLAYER_STATE = game_manager->game_objs->player->player_L;
+		PLAYER_STATE = game_manager->game_objs->player->player_L[0];
 		ft_move_player_to_position(game_manager, PLAYER_X, PLAYER_Y - 1);
 	}
 	else if (keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_D)
 	{
-		PLAYER_STATE = game_manager->game_objs->player->player_R;
+		PLAYER_STATE = game_manager->game_objs->player->player_R[0];
 		ft_move_player_to_position(game_manager, PLAYER_X, PLAYER_Y + 1);
 	}
 }

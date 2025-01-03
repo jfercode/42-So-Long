@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:23:06 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/03 12:34:56 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/03 14:24:37 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@
 typedef struct player
 {
 	mlx_image_t *current_state;
-	mlx_image_t	*player_U;
-	mlx_image_t	*player_D;
-	mlx_image_t	*player_R;
-	mlx_image_t	*player_L;
+	mlx_image_t	*player_U[3];
+	mlx_image_t	*player_D[3];
+	mlx_image_t	*player_R[3];
+	mlx_image_t	*player_L[3];
 	int			*player_pos;
 }					player_t;
 
