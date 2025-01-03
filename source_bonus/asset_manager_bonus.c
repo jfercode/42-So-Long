@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asset_manager.c                                    :+:      :+:    :+:   */
+/*   asset_manager_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:12:28 by jaferna2          #+#    #+#             */
-/*   Updated: 2024/12/19 16:32:17 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/03 12:19:44 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 /* Checks that the given img exist or not	*/
 static void	ft_check_img(game_manager_t *game_manager,
@@ -46,16 +46,12 @@ void	ft_img_init(game_manager_t *game_manager)
 		"./assets/sprites/player_left.png");
 	ft_check_img(game_manager, &game_manager->game_objs->player->player_R,
 		"./assets/sprites/player_right.png");
-	ft_check_img(game_manager, &game_manager->game_objs->collectable,
-		"./assets/sprites/collectable.png");
-	ft_check_img(game_manager, &game_manager->game_objs->floor,
-		"./assets/sprites/floor.png");
-	ft_check_img(game_manager, &game_manager->game_objs->exit_open,
-		"./assets/sprites/exit_open.png");
-	ft_check_img(game_manager, &game_manager->game_objs->exit_close,
-		"./assets/sprites/exit_close.png");
-	ft_check_img(game_manager, &game_manager->game_objs->wall,
-		"./assets/sprites/wall.png");
+	ft_check_img(game_manager, &C_SPRITE, "./assets/sprites/collectable.png");
+	ft_check_img(game_manager, &F_SPRITE, "./assets/sprites/floor.png");
+	ft_check_img(game_manager, &EO_SPRITE, "./assets/sprites/exit_open.png");
+	ft_check_img(game_manager, &EC_SPRITE, "./assets/sprites/exit_close.png");
+	ft_check_img(game_manager, &W_SPRITE, "./assets/sprites/wall.png");
+	ft_check_img(game_manager, &E_SPRITE, "./assets/sprites/enemy.png");
 }
 
 /* Simple resize and draw image */
