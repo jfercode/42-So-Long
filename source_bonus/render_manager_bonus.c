@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 10:39:49 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/03 12:48:02 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/03 13:18:28 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	ft_render_static(game_manager_t *game_manager)
 		{
 			pos[0] = y * TILE_SIZE;
 			pos[1] = x * TILE_SIZE;
+			ft_draw_image(game_manager,
+				game_manager->game_objs->floor, pos);
 			if (game_manager->map[x][y] == WALL)
 				ft_draw_image(game_manager, W_SPRITE, pos);
-			else if (game_manager->map[x][y] == EMPTY)
-				ft_draw_image(game_manager, F_SPRITE, pos);
 			else if (game_manager->map[x][y] == COLLECTIBLE)
 				ft_draw_image(game_manager, C_SPRITE, pos);
 			else if (game_manager->map[x][y] == ENEMY)
@@ -93,7 +93,8 @@ void	ft_render_player_moves(game_manager_t *game_manager)
 	display_text = ft_strjoin(movement_text, real_moves);
 	free(real_moves);
 	if (game_manager->game_objs->movement_text)
-		mlx_delete_image(game_manager->mlx, game_manager->game_objs->movement_text);
+		mlx_delete_image(game_manager->mlx,
+			game_manager->game_objs->movement_text);
 	game_manager->game_objs->movement_text
 		= mlx_put_string(game_manager->mlx, display_text, 50, 50);
 	free(display_text);

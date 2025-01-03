@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asset_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:12:28 by jaferna2          #+#    #+#             */
-/*   Updated: 2024/12/19 16:32:17 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/03 13:11:05 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void	ft_img_init(game_manager_t *game_manager)
 	if (!game_manager->game_objs)
 		ft_printf(2, "Error: game_objs is NULL\n");
 	ft_check_img(game_manager, &game_manager->game_objs->player->player_U,
-		"./assets/sprites/player_up.png");
+		"./assets/sprites/Player_U_1.png");
 	ft_check_img(game_manager, &game_manager->game_objs->player->player_D,
-		"./assets/sprites/player_down.png");
+		"./assets/sprites/Player_D_1.png");
 	ft_check_img(game_manager, &game_manager->game_objs->player->player_L,
-		"./assets/sprites/player_left.png");
+		"./assets/sprites/Player_L_1.png");
 	ft_check_img(game_manager, &game_manager->game_objs->player->player_R,
-		"./assets/sprites/player_right.png");
+		"./assets/sprites/Player_R_1.png");
 	ft_check_img(game_manager, &game_manager->game_objs->collectable,
 		"./assets/sprites/collectable.png");
 	ft_check_img(game_manager, &game_manager->game_objs->floor,

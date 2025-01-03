@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_manager.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 10:39:49 by jaferna2          #+#    #+#             */
-/*   Updated: 2024/12/23 10:39:50 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/03 13:18:00 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	ft_render_static(game_manager_t *game_manager)
 		{
 			pos[0] = y * TILE_SIZE;
 			pos[1] = x * TILE_SIZE;
+			ft_draw_image(game_manager,
+				game_manager->game_objs->floor, pos);
 			if (game_manager->map[x][y] == WALL)
-				ft_draw_image(game_manager, game_manager->game_objs->wall, pos);
-			else if (game_manager->map[x][y] == EMPTY)
 				ft_draw_image(game_manager,
-					game_manager->game_objs->floor, pos);
+					game_manager->game_objs->wall, pos);
 			else if (game_manager->map[x][y] == COLLECTIBLE)
 				ft_draw_image(game_manager,
 					game_manager->game_objs->collectable, pos);
