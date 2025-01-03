@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:44:00 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/03 11:58:19 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/03 12:53:04 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	ft_init_game(char *map_file_name, game_manager_t **game_manager)
 		return (-1);
 	(*game_manager)->map_dimensions
 		= ft_check_map_dimensions((*game_manager)->map);
+	(*game_manager)->game_objs->movement_text = NULL;
 	ft_init_mlx(*game_manager);
 	ft_img_init(*game_manager);
 	(*game_manager)->game_objs->player->current_state

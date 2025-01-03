@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:23:06 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/03 11:53:14 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/03 12:34:56 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct game_objs
 	mlx_image_t		*wall;
 	mlx_image_t		*floor;
 	mlx_image_t		*enemy;
-	mlx_image_t		*background;
+	mlx_image_t		*movement_text;
 	int				coll_count;
 	int				exit_state;
 }					game_objs_t;
@@ -92,6 +92,7 @@ void	ft_render_dynamic(game_manager_t *game_manager);
 void	ft_free_game_manager(game_manager_t *game_manager);
 void	ft_loop_hook_handler(game_manager_t *game_manager);
 void	ft_print_player_moves(game_manager_t *game_manager);
+void	ft_render_player_moves(game_manager_t *game_manager);
 void	ft_key_handler(struct mlx_key_data keydata, void *param);
 void	ft_player_movement(mlx_key_data_t key, game_manager_t *game_manager);
 void	ft_draw_image(game_manager_t *game_manager, mlx_image_t *img, int *pos);

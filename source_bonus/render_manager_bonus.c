@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 10:39:49 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/03 11:52:52 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/03 12:48:02 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,23 @@ void	ft_render_dynamic(game_manager_t *game_manager)
 		}
 		x++;
 	}
+	ft_render_player_moves(game_manager);
+}
+
+// Draw a text with the real player movements
+void	ft_render_player_moves(game_manager_t *game_manager)
+{
+	char	*movement_text;
+	char	*real_moves;
+	char	*display_text;
+
+	real_moves = ft_itoa(game_manager->movements_count - 1);
+	movement_text = "Player real moves: ";
+	display_text = ft_strjoin(movement_text, real_moves);
+	free(real_moves);
+	if (game_manager->game_objs->movement_text)
+		mlx_delete_image(game_manager->mlx, game_manager->game_objs->movement_text);
+	game_manager->game_objs->movement_text
+		= mlx_put_string(game_manager->mlx, display_text, 50, 50);
+	free(display_text);
 }
