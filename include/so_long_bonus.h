@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:23:06 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/06 13:13:03 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/06 18:43:50 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # define PLAYER 'P'
 # define EXIT 'E'
 # define ENEMY 'I'
-# define E_SPRITE game_manager->game_objs->enemy
 # define EXIT_CLOSE '0'
 # define EC_SPRITE game_manager->game_objs->exit_close
 # define EXIT_OPEN '1'
@@ -69,7 +68,7 @@ typedef struct game_objs
 	mlx_image_t		*exit_close;
 	mlx_image_t		*wall;
 	mlx_image_t		*floor;
-	mlx_image_t		*enemy;
+	mlx_image_t		*enemy[6];
 	mlx_image_t		*movement_text;
 	int				coll_count;
 	int				exit_state;
@@ -104,8 +103,10 @@ void	ft_print_player_moves(game_manager_t *game_manager);
 void	ft_render_player_moves(game_manager_t *game_manager);
 void	ft_key_handler(struct mlx_key_data keydata, void *param);
 void	ft_player_movement(mlx_key_data_t key, game_manager_t *game_manager);
+void	ft_animate_player_movement(game_manager_t *game_manager, char *new_dir);
 void	ft_draw_image(game_manager_t *game_manager, mlx_image_t *img, int *pos);
 
+int		ft_render_enemy(void);
 int		ft_map_checker(char **map);
 int		ft_obtain_map_lines(char *map_file_name);
 int		ft_exit_game(game_manager_t *game_manager);

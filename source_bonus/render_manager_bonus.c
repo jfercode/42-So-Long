@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_manager_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 10:39:49 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/03 13:18:28 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/06 18:44:08 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	ft_render_static(game_manager_t *game_manager)
 				ft_draw_image(game_manager, W_SPRITE, pos);
 			else if (game_manager->map[x][y] == COLLECTIBLE)
 				ft_draw_image(game_manager, C_SPRITE, pos);
-			else if (game_manager->map[x][y] == ENEMY)
-				ft_draw_image(game_manager, E_SPRITE, pos);
 			y++;
 		}
 		x++;
@@ -74,6 +72,8 @@ void	ft_render_dynamic(game_manager_t *game_manager)
 				ft_render_exit(game_manager, pos);
 			else if (game_manager->map[x][y] == EMPTY)
 				ft_draw_image(game_manager, F_SPRITE, pos);
+			else if (game_manager->map[x][y] == ENEMY)
+				ft_draw_image(game_manager, game_manager->game_objs->enemy[ft_render_enemy()], pos);
 			y++;
 		}
 		x++;

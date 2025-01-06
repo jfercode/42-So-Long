@@ -24,7 +24,7 @@ SRC_BONUS_FILES =	$(SRC_BONUS_DIR)/asset_manager_bonus.c $(SRC_BONUS_DIR)/game_e
 					$(SRC_BONUS_DIR)/map_utils_bonus.c $(SRC_BONUS_DIR)/map_utils_2_bonus.c \
 					$(SRC_BONUS_DIR)/map_validation_bonus.c $(SRC_BONUS_DIR)/map_validation_2_bonus.c \
 					$(SRC_BONUS_DIR)/player_movement_bonus.c $(SRC_BONUS_DIR)/render_manager_bonus.c \
-					$(SRC_BONUS_DIR)/so_long_bonus.c
+					$(SRC_BONUS_DIR)/animations_bonus.c $(SRC_BONUS_DIR)/so_long_bonus.c
 
 OBJS = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 BONUS_OBJS = $(SRC_BONUS_FILES:$(SRC_BONUS_DIR)/%.c=$(BONUS_OBJS_DIR)/%.o)
