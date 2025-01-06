@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:23:06 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/03 14:24:37 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/06 13:13:03 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,16 @@
 # define EMPTY '0'
 # define F_SPRITE game_manager->game_objs->floor
 
-# define PLAYER_STATE game_manager->game_objs->player->current_state
-# define PLAYER_X game_manager->game_objs->player->player_pos[0]
-# define PLAYER_Y game_manager->game_objs->player->player_pos[1]
+# define PLAYER_GO game_manager->game_objs->player
+# define PLAYER_STATE PLAYER_GO->current_state
+# define PLAYER_X PLAYER_GO->player_pos[0]
+# define PLAYER_Y PLAYER_GO->player_pos[1]
+# define PLAYER_DIR PLAYER_GO->direction
+
+# define UP "UP"
+# define DOWN "DOWN"
+# define RIGHT "RIGHT"
+# define LEFT "LEFT"
 
 # define TILE_SIZE 64
 
@@ -49,6 +56,8 @@ typedef struct player
 	mlx_image_t	*player_R[3];
 	mlx_image_t	*player_L[3];
 	int			*player_pos;
+	int			animation_frame;
+	char		*direction;
 }					player_t;
 
 typedef struct game_objs

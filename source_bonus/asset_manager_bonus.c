@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asset_manager_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:12:28 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/03 14:26:55 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/06 18:02:33 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static void	check_player_sprites(game_manager_t *game_manager)
 		"./assets/sprites/Player_D_3.png");
 	ft_check_img(game_manager, &game_manager->game_objs->player->player_L[0],
 		"./assets/sprites/Player_L_1.png");
-	ft_check_img(game_manager, &game_manager->game_objs->player->player_L[2],
+	ft_check_img(game_manager, &game_manager->game_objs->player->player_L[1],
 		"./assets/sprites/Player_L_2.png");
-	ft_check_img(game_manager, &game_manager->game_objs->player->player_L[3],
+	ft_check_img(game_manager, &game_manager->game_objs->player->player_L[2],
 		"./assets/sprites/Player_L_3.png");
 	ft_check_img(game_manager, &game_manager->game_objs->player->player_R[0],
 		"./assets/sprites/Player_R_1.png");

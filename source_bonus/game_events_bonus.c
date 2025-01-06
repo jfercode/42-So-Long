@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_events_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:41:26 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/03 11:51:42 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/06 13:22:07 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	ft_start_game(game_manager_t *game_manager)
 			game_manager->map_dimensions, COLLECTIBLE);
 	game_manager->game_objs->exit_state = EXIT_CLOSE;
 	game_manager->movements_count = 1;
-	game_manager->game_objs->player->player_pos
+	PLAYER_GO->animation_frame = 0;
+	PLAYER_GO->player_pos
 		= ft_locate_player(game_manager->map, game_manager->map_dimensions);
 	mlx_key_hook(game_manager->mlx, ft_key_handler, game_manager);
 	mlx_close_hook(game_manager->mlx, ft_close_handler, game_manager);
