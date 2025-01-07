@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:16:32 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/06 13:20:19 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:54:32 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ static int	ft_check_for_valid_movement(game_manager_t *game_manager,
 		return (0);
 	else if (game_manager->map[x][y] == EXIT)
 	{
-		if (game_manager->game_objs->exit_state == EXIT_CLOSE)
-			return (0);
-		else
+		if (game_manager->game_objs->exit_state == EXIT_OPEN)
 			return (ft_win_game(game_manager), 1);
 	}
 	else if (game_manager->map[x][y] == COLLECTIBLE)
@@ -39,7 +37,11 @@ static void	ft_move_player_to_position(game_manager_t *game_manager,
 {
 	if (ft_check_for_valid_movement(game_manager, x, y))
 	{
-		game_manager->map[PLAYER_X][PLAYER_Y] = EMPTY;
+		if (PLAYER_X == game_manager->exit_pos[0]
+			&& PLAYER_Y == game_manager->exit_pos[1])
+			game_manager->map[PLAYER_X][PLAYER_Y] = EXIT;
+		else
+			game_manager->map[PLAYER_X][PLAYER_Y] = EMPTY;
 		PLAYER_X = x;
 		PLAYER_Y = y;
 		game_manager->map[x][y] = PLAYER;

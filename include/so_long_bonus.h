@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:23:06 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/07 09:42:27 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:52:35 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct game_manager
 	game_objs_t	*game_objs;
 	int			movements_count;
 	int			*map_dimensions;
+	int			*exit_pos;
 	char		**map;
 }					game_manager_t;
 
@@ -117,6 +118,7 @@ int 	ft_init_game(char *map_file_name, game_manager_t **game_manager);
 
 int		*ft_obtain_monitor_resolution();
 int 	*ft_check_map_dimensions(char **map);
+int		*ft_locate_exit(char **map, int *dimensions);
 int		*ft_locate_player(char **map, int *dimensions);
 
 char	*ft_get_next_line(int fd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_events_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:41:26 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/06 13:22:07 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:50:14 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_start_game(game_manager_t *game_manager)
 {
 	game_manager->game_objs->coll_count = count_char(game_manager->map,
 			game_manager->map_dimensions, COLLECTIBLE);
+	game_manager->exit_pos
+		= ft_locate_exit(game_manager->map, game_manager->map_dimensions);
 	game_manager->game_objs->exit_state = EXIT_CLOSE;
 	game_manager->movements_count = 1;
 	PLAYER_GO->animation_frame = 0;

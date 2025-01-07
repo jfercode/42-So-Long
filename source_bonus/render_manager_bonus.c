@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 10:39:49 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/07 09:37:03 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:51:34 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,16 @@ void	ft_render_static(game_manager_t *game_manager)
 
 static void	ft_render_exit(game_manager_t *game_manager, int *pos)
 {
-	if (game_manager->game_objs->exit_state == EXIT_CLOSE)
-		ft_draw_image(game_manager, EC_SPRITE, pos);
-	else
-		ft_draw_image(game_manager, EO_SPRITE, pos);
+	if (game_manager->map[game_manager->exit_pos[0]]
+		[game_manager->exit_pos[1]])
+	{
+		if (game_manager->game_objs->exit_state == EXIT_CLOSE)
+			ft_draw_image(game_manager,
+				game_manager->game_objs->exit_close, pos);
+		else
+			ft_draw_image(game_manager,
+				game_manager->game_objs->exit_open, pos);
+	}
 }
 
 void	ft_render_dynamic(game_manager_t *game_manager)

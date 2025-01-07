@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 10:25:48 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/03 11:51:51 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:49:38 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,29 @@ char	**ft_dup_map(char **map)
 	dup_map[i] = NULL;
 	free(y);
 	return (dup_map);
+}
+
+/* Find the exit point in a map */
+int	*ft_locate_exit(char **map, int *dimensions)
+{
+	int	*curr;
+
+	curr = malloc(sizeof(int) * 2);
+	if (!curr)
+		return (NULL);
+	curr[0] = 0;
+	curr[1] = 0;
+	while (curr[0] < dimensions[0])
+	{
+		while (curr[1] < dimensions[1])
+		{
+			if (map[curr[0]][curr[1]] == EXIT)
+				return (curr);
+			curr[1]++;
+		}
+		curr[0]++;
+		curr[1] = 0;
+	}
+	free (curr);
+	return (NULL);
 }

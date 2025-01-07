@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:44:00 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/06 13:18:09 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:46:10 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	ft_free_game_manager(game_manager_t *game_manager)
 		ft_free_map(game_manager->map);
 	if (game_manager->map_dimensions)
 		free (game_manager->map_dimensions);
+	if (game_manager->exit_pos)
+		free (game_manager->exit_pos);
 	if (game_manager->game_objs)
 	{
 		if (game_manager->game_objs->player)
