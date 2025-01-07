@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:44:00 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/07 12:46:10 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:19:53 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,5 @@ void	ft_init_mlx(game_manager_t *game_manager)
 void	ft_print_player_moves(game_manager_t *game_manager)
 {
 	ft_printf(1, "Player real moves: %d\n",
-		game_manager->movements_count);
+		game_manager->movements_count - 1);
 }

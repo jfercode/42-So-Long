@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:16:32 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/07 12:54:32 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:19:50 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static void	ft_move_player_to_position(game_manager_t *game_manager,
 		game_manager->map[x][y] = PLAYER;
 		game_manager->movements_count++;
 		ft_render_dynamic(game_manager);
+		ft_print_player_moves(game_manager);
 	}
 }
 

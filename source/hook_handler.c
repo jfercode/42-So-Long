@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:19:39 by jaferna2          #+#    #+#             */
-/*   Updated: 2024/12/19 17:12:53 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:19:02 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ void	ft_key_handler(struct mlx_key_data keydata, void *param)
 		ft_exit_game(game_manager);
 	}
 	if (keydata.key && keydata.action == MLX_PRESS)
-	{
-		ft_print_player_moves(game_manager);
 		ft_player_movement(keydata, game_manager);
-	}
 }
 
 /*	Simple close handler to exit game when needed */
