@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asset_manager_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:12:28 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/06 18:44:40 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/07 09:33:08 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,18 @@ static void	check_player_sprites(game_manager_t *game_manager)
 
 static void	check_enemy_sprites(game_manager_t *game_manager)
 {
-	ft_check_img(game_manager, game_manager->game_objs->enemy[0], "./assets/sprites/Enemy_0.png");
-	ft_check_img(game_manager, game_manager->game_objs->enemy[1], "./assets/sprites/Enemy_1.png");
-	ft_check_img(game_manager, game_manager->game_objs->enemy[2], "./assets/sprites/Enemy_2.png");
-	ft_check_img(game_manager, game_manager->game_objs->enemy[3], "./assets/sprites/Enemy_3.png");
-	ft_check_img(game_manager, game_manager->game_objs->enemy[4], "./assets/sprites/Enemy_4.png");
-	ft_check_img(game_manager, game_manager->game_objs->enemy[5], "./assets/sprites/Enemy_5.png");
+	ft_check_img(game_manager, &game_manager->game_objs->enemy[0],
+		"./assets/sprites/Enemy_0.png");
+	ft_check_img(game_manager, &game_manager->game_objs->enemy[1],
+		"./assets/sprites/Enemy_1.png");
+	ft_check_img(game_manager, &game_manager->game_objs->enemy[2],
+		"./assets/sprites/Enemy_2.png");
+	ft_check_img(game_manager, &game_manager->game_objs->enemy[3],
+		"./assets/sprites/Enemy_3.png");
+	ft_check_img(game_manager, &game_manager->game_objs->enemy[4],
+		"./assets/sprites/Enemy_4.png");
+	ft_check_img(game_manager, &game_manager->game_objs->enemy[5],
+		"./assets/sprites/Enemy_5.png");
 }
 
 /* Load the different game images from image files	*/

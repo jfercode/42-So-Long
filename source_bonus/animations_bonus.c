@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animations_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:29:43 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/06 18:41:15 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/07 09:42:11 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_animate_player_movement(game_manager_t *game_manager,
 		PLAYER_STATE = PLAYER_GO->player_L[PLAYER_GO->animation_frame];
 }
 
-int	ft_render_enemy(void)
+void	ft_animate_enemy(game_manager_t *game_manager, int32_t pos[2])
 {
 	static int	enemy_frame = 0;
 
@@ -47,5 +47,8 @@ int	ft_render_enemy(void)
 		enemy_frame++;
 	else
 		enemy_frame = 0;
-	return (enemy_frame);
+	ft_draw_image(game_manager,
+		game_manager->game_objs->floor, pos);
+	ft_draw_image(game_manager,
+		game_manager->game_objs->enemy[enemy_frame], pos);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_manager_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 10:39:49 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/06 18:44:08 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/07 09:37:03 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_render_dynamic(game_manager_t *game_manager)
 			else if (game_manager->map[x][y] == EMPTY)
 				ft_draw_image(game_manager, F_SPRITE, pos);
 			else if (game_manager->map[x][y] == ENEMY)
-				ft_draw_image(game_manager, game_manager->game_objs->enemy[ft_render_enemy()], pos);
+				ft_animate_enemy(game_manager, pos);
 			y++;
 		}
 		x++;
