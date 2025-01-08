@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:32:18 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/03 11:52:24 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:20:20 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static void	fill(char **map, int *dimensions, int *curr, char to_fill)
 	if ((curr[0] < 0 || curr[0] >= dimensions[0])
 		|| (curr[1] < 0 || curr[1] >= dimensions[1]))
 		return ;
-	else if (map[curr[0]][curr[1]] == WALL || map[curr[0]][curr[1]] == 'X')
+	else if (map[curr[0]][curr[1]] == WALL || map[curr[0]][curr[1]] == 'X'
+			|| map[curr[0]][curr[1]] == ENEMY)
 		return ;
 	map[curr[0]][curr[1]] = 'X';
 	fill(map, dimensions, (int []){curr[0] - 1, curr[1]}, to_fill);
@@ -52,7 +53,7 @@ int	count_char(char **map, int *dimensions, char to_count)
 	return (count);
 }
 
-/*	Check for an available and unic exit in the map	*/
+/*	Check for an available props in the map	*/
 int	ft_check_for_prop(char **map, int *dimensions, char prop_char)
 {
 	int		num_props;
@@ -74,8 +75,8 @@ int	ft_check_for_prop(char **map, int *dimensions, char prop_char)
 	num_find_props = count_char(temp_map, dimensions, prop_char);
 	if (num_find_props)
 		return (ft_printf(2, "Error: Player can't reach the prop %c\n",
-				prop_char), ft_free_map(temp_map), 0);
+				prop_char), ft_free_map(temp_map), free (start_pos), 0);
 	ft_free_map(temp_map);
 	free (start_pos);
-	return (1);
+	return (num_props);
 }

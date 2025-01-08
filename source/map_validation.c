@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:25:41 by jaferna2          #+#    #+#             */
-/*   Updated: 2024/12/19 11:01:38 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:20:03 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,34 +39,46 @@ static int	is_map_enclosed_by_walls(char **map, int *dimensions)
 	return (1);
 }
 
-/*	Check that the maps has the minimal props to play */
-static int	check_map_props(char **map, int *dimensions, int x, int y)
+// Check for valids characters in the map
+static int	ft_check_for_valids_char_in_map(char **map)
 {
-	int	e;
-	int	c;
-	int	p;
+	int	i;
+	int	j;
 
-	e = 0;
-	c = 0;
-	p = 0;
-	while (x < dimensions[0])
+	i = 0;
+	j = 0;
+	while (map[i])
 	{
-		while (y < dimensions[1])
+		j = 0;
+		while (map[i][j])
 		{
-			if (map[x][y] == EXIT)
-				e++;
-			else if (map[x][y] == COLLECTIBLE)
-				c++;
-			else if (map[x][y] == PLAYER)
-				p++;
-			y++;
+			if (map[i][j] != EXIT && map[i][j] != COLLECTIBLE
+				&& map[i][j] != WALL && map[i][j] != PLAYER
+				&& map[i][j] != EMPTY)
+			{
+				if (ft_isalnum(map[i][j]))
+					return (0);
+			}
+			j++;
 		}
-		y = 0;
-		x++;
+		i++;
 	}
-	if (e != 1 || c == 0 || p != 1)
-		return (0);
 	return (1);
+}
+
+/*	Check that the maps has the minimal props to play */
+static int	check_map_props(char **map, int *dimensions)
+{
+	int	ex_count;
+	int	c_count;
+	int	p_count;
+
+	ex_count = count_char(map, dimensions, EXIT);
+	c_count = count_char(map, dimensions, COLLECTIBLE);
+	p_count = count_char(map, dimensions, PLAYER);
+	if (ex_count != 1 || c_count == 0 || p_count != 1)
+		return (0);
+	return (ft_check_for_valids_char_in_map(map));
 }
 
 /* Check the map extension */
@@ -94,13 +106,13 @@ int	ft_map_checker(char **map)
 		return (free(dimensions),
 			perror("Error: Map is not valid to play with it\n"), 0);
 	if (!is_map_enclosed_by_walls(map, dimensions))
-		return (ft_free_map(map), free(dimensions), 0);
-	if (!check_map_props(map, dimensions, 0, 0))
+		return (free(dimensions), 0);
+	if (!check_map_props(map, dimensions))
 		return (perror("Error: Map is not valid to play with it\n"),
-			free(dimensions), ft_free_map(map), 0);
+			free(dimensions), 0);
 	if (!ft_check_for_prop(map, dimensions, EXIT)
 		|| !ft_check_for_prop(map, dimensions, COLLECTIBLE))
-		return (free(dimensions), ft_free_map(map), 0);
+		return (free(dimensions), 0);
 	free(dimensions);
 	return (1);
 }

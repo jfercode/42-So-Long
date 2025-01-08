@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:32:18 by jaferna2          #+#    #+#             */
-/*   Updated: 2024/12/19 16:46:01 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:20:53 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	count_char(char **map, int *dimensions, char to_count)
 	return (count);
 }
 
-/*	Check for an available and unic exit in the map	*/
+/*	Check for an available props in the map	*/
 int	ft_check_for_prop(char **map, int *dimensions, char prop_char)
 {
 	int		num_props;
@@ -74,8 +74,8 @@ int	ft_check_for_prop(char **map, int *dimensions, char prop_char)
 	num_find_props = count_char(temp_map, dimensions, prop_char);
 	if (num_find_props)
 		return (ft_printf(2, "Error: Player can't reach the prop %c\n",
-				prop_char), ft_free_map(temp_map), 0);
+				prop_char), ft_free_map(temp_map), free (start_pos), 0);
 	ft_free_map(temp_map);
 	free (start_pos);
-	return (1);
+	return (num_props);
 }

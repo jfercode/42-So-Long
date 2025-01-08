@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:03:20 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/03 11:51:55 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:49:20 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,13 @@ void	ft_free_map(char **map)
 {
 	int	i;
 
+	if (!map)
+		return ;
 	i = 0;
 	while (map[i])
 	{
 		free(map[i]);
+		map[i] = NULL;
 		i++;
 	}
 	free(map);
@@ -64,12 +67,10 @@ int	*ft_check_map_dimensions(char **map)
 	i = 0;
 	dimensions[0] = 0;
 	dimensions[1] = 0;
-	while (map[i] != NULL)
+	while (map[i])
 	{
-		len = 0;
-		while (map[i][len] && map[i][len] != '\n')
-			len++;
-		if (dimensions[1] != 0 && (dimensions[1] != len))
+		len = ft_map_rows_len(map[i]);
+		if ((dimensions[1] != 0 && dimensions[1] != len) || len == 0)
 			return (free(dimensions), NULL);
 		if (dimensions[1] == 0)
 			dimensions[1] = len;

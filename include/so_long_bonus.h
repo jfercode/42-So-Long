@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:23:06 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/07 12:52:35 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:07:12 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	ft_animate_player_movement(game_manager_t *game_manager, char *new_dir);
 void	ft_draw_image(game_manager_t *game_manager, mlx_image_t *img, int *pos);
 
 int		ft_map_checker(char **map);
+int		ft_map_rows_len(const char *row);
 int		ft_obtain_map_lines(char *map_file_name);
 int		ft_exit_game(game_manager_t *game_manager);
 int		ft_check_map_extensions(char *map_file_name);

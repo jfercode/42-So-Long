@@ -6,11 +6,25 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:44:00 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/07 13:20:13 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/07 16:22:23 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long_bonus.h"
+
+static void	ft_initialize_game_manager(game_manager_t *game_manager)
+{
+	if (game_manager != NULL)
+	{
+		game_manager->map = NULL;
+		game_manager->map_dimensions = NULL;
+		game_manager->exit_pos = NULL;
+		game_manager->game_objs = NULL;
+		game_manager->mlx = NULL;
+		game_manager->game_objs = malloc(sizeof(game_objs_t));
+		game_manager->game_objs->player = malloc(sizeof(player_t));
+	}
+}
 
 /*	Init data before stat game	*/
 int	ft_init_game(char *map_file_name, game_manager_t **game_manager)
@@ -18,12 +32,12 @@ int	ft_init_game(char *map_file_name, game_manager_t **game_manager)
 	*game_manager = malloc(sizeof(game_manager_t));
 	if (!(*game_manager))
 		return (perror("Error: Failed to malloc for game_manager\n"), -1);
-	(*game_manager)->game_objs = malloc(sizeof(game_objs_t));
+	ft_initialize_game_manager(*game_manager);
 	if (!(*game_manager)->game_objs)
 		return (perror("Error: Failed to malloc for game_objs\n"), -1);
-	(*game_manager)->game_objs->player = malloc(sizeof(player_t));
 	if (!(*game_manager)->game_objs->player)
 		return (perror("Error: Failed to malloc for player\n"), -1);
+	(*game_manager)->game_objs->player->player_pos = NULL;
 	if (!ft_check_map_extensions(map_file_name))
 		return (-1);
 	(*game_manager)->map = ft_map_loader(map_file_name);

@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 10:25:48 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/01/07 11:34:01 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:53:21 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,14 @@ int	*ft_locate_exit(char **map, int *dimensions)
 	}
 	free (curr);
 	return (NULL);
+}
+
+int	ft_map_rows_len(const char *row)
+{
+	int	i;
+
+	i = 0;
+	while (ft_isalnum(row[i]))
+		i++;
+	return (i);
 }
